@@ -1,0 +1,899 @@
+{
+  "dataset": "AliArshad/Bugzilla_Eclipse_Bug_Reports_Dataset",
+  "evaluatedAt": "2026-09-15T15:30:04.840Z",
+  "totalSamples": 48,
+  "exactMatches": 17,
+  "exactAccuracyPercentage": 35.42,
+  "adjacentMatches": 42,
+  "adjacentAccuracyPercentage": 87.5,
+  "pendingReviewCount": 31,
+  "pendingTriageCount": 0,
+  "confusionMatrix": {
+    "Critical": {
+      "Critical": 1,
+      "High": 9,
+      "Medium": 2,
+      "Low": 0
+    },
+    "High": {
+      "Critical": 0,
+      "High": 2,
+      "Medium": 7,
+      "Low": 3
+    },
+    "Medium": {
+      "Critical": 0,
+      "High": 1,
+      "Medium": 8,
+      "Low": 3
+    },
+    "Low": {
+      "Critical": 0,
+      "High": 1,
+      "Medium": 5,
+      "Low": 6
+    }
+  },
+  "perClassMetrics": {
+    "Critical": {
+      "truePositives": 1,
+      "falsePositives": 0,
+      "falseNegatives": 11,
+      "precisionPercentage": 100,
+      "recallPercentage": 8.33,
+      "f1Score": 15.38
+    },
+    "High": {
+      "truePositives": 2,
+      "falsePositives": 11,
+      "falseNegatives": 10,
+      "precisionPercentage": 15.38,
+      "recallPercentage": 16.67,
+      "f1Score": 16
+    },
+    "Medium": {
+      "truePositives": 8,
+      "falsePositives": 14,
+      "falseNegatives": 4,
+      "precisionPercentage": 36.36,
+      "recallPercentage": 66.67,
+      "f1Score": 47.06
+    },
+    "Low": {
+      "truePositives": 6,
+      "falsePositives": 6,
+      "falseNegatives": 6,
+      "precisionPercentage": 50,
+      "recallPercentage": 50,
+      "f1Score": 50
+    }
+  },
+  "sampleRecords": [
+    {
+      "id": 1,
+      "sourceBugId": "379612",
+      "project": "Core",
+      "rawSeverity": "critical",
+      "title": "[Core] Bug #379612: arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Missing tree expansion arrows impair UI navigation across the platform without causing a crash or total system failure.",
+      "tags": [
+        "ui"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": false
+    },
+    {
+      "id": 2,
+      "sourceBugId": "532493",
+      "project": "Bugzilla",
+      "rawSeverity": "blocker",
+      "title": "[Bugzilla] Bug #532493: [SECURITY] Restricting a bug to a group while moving it to another product has no effect i",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "Critical",
+      "confidence": 0.95,
+      "reason": "The report highlights a security vulnerability where access restriction controls fail when moving a bug to a new product, potentially exposing sensitive information.",
+      "tags": [
+        "auth",
+        "backend"
+      ],
+      "status": "triaged",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 3,
+      "sourceBugId": "580187",
+      "project": "Core",
+      "rawSeverity": "critical",
+      "title": "[Core] Bug #580187: TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq'",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.95,
+      "reason": "An assertion failure in the compiler pipeline indicates a severe crash during code generation.",
+      "tags": [
+        "crash"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 4,
+      "sourceBugId": "557060",
+      "project": "Core",
+      "rawSeverity": "blocker",
+      "title": "[Core] Bug #557060: [Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABV",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.95,
+      "reason": "Application startup fails completely due to a missing DLL entry point, preventing the software from running.",
+      "tags": [
+        "crash"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 5,
+      "sourceBugId": "508456",
+      "project": "Core",
+      "rawSeverity": "critical",
+      "title": "[Core] Bug #508456: [HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.9,
+      "reason": "The browser hanging or becoming unresponsive when loading large tables represents a major functional breakage in the layout pipeline.",
+      "tags": [
+        "performance",
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 6,
+      "sourceBugId": "399843",
+      "project": "Core",
+      "rawSeverity": "critical",
+      "title": "[Core] Bug #399843: \"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, ov",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.95,
+      "reason": "The report describes an assertion failure leading to a crash during layout rendering.",
+      "tags": [
+        "crash",
+        "ui"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 7,
+      "sourceBugId": "373589",
+      "project": "Core",
+      "rawSeverity": "critical",
+      "title": "[Core] Bug #373589: Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has bee",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.95,
+      "reason": "The bug details an application crash when retrieving link colors for a removed body element.",
+      "tags": [
+        "crash",
+        "ui"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 8,
+      "sourceBugId": "132020",
+      "project": "Platform",
+      "rawSeverity": "critical",
+      "title": "[Platform] Bug #132020: I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Sim",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "The Help window failing to open under a specific installation is a non-fatal functional bug affecting a non-core feature.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": false
+    },
+    {
+      "id": 9,
+      "sourceBugId": "330367",
+      "project": "Core",
+      "rawSeverity": "critical",
+      "title": "[Core] Bug #330367: Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.93,
+      "reason": "The bug reports an application crash triggered by a specific JS and DOM interaction.",
+      "tags": [
+        "crash",
+        "ui"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 10,
+      "sourceBugId": "323763",
+      "project": "Platform",
+      "rawSeverity": "critical",
+      "title": "[Platform] Bug #323763: Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.95,
+      "reason": "Application crashes completely during startup, preventing any core functionality from being used.",
+      "tags": [
+        "crash"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 11,
+      "sourceBugId": "767775",
+      "project": "Core",
+      "rawSeverity": "critical",
+      "title": "[Core] Bug #767775: Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!!",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.95,
+      "reason": "An explicit crash and abort error in the plugin process breaks plugin functionality and stability.",
+      "tags": [
+        "crash"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 12,
+      "sourceBugId": "652427",
+      "project": "Bugzilla",
+      "rawSeverity": "critical",
+      "title": "[Bugzilla] Bug #652427: Going back to the new bug page looses the description if possible duplicates have been sea",
+      "expectedSeverity": "Critical",
+      "actualSeverity": "High",
+      "confidence": 0.9,
+      "reason": "Losing user-entered bug description data during navigation constitutes data loss in a core workflow.",
+      "tags": [
+        "ui",
+        "data-loss"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 13,
+      "sourceBugId": "465606",
+      "project": "Bugzilla",
+      "rawSeverity": "major",
+      "title": "[Bugzilla] Bug #465606: If a user doesn't have access to change target milestone, it gets set back to default.",
+      "expectedSeverity": "High",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "The automatic resetting of the target milestone due to missing permissions is a functional edge-case bug that impacts metadata without causing a system crash or severe data loss.",
+      "tags": [
+        "auth",
+        "backend"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 14,
+      "sourceBugId": "328128",
+      "project": "Core",
+      "rawSeverity": "major",
+      "title": "[Core] Bug #328128: nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user ",
+      "expectedSeverity": "High",
+      "actualSeverity": "Low",
+      "confidence": 0.95,
+      "reason": "The report is a request to clarify documentation for a method's behavior, posing no functional impact on software execution.",
+      "tags": [
+        "documentation"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": false
+    },
+    {
+      "id": 15,
+      "sourceBugId": "504450",
+      "project": "Core",
+      "rawSeverity": "major",
+      "title": "[Core] Bug #504450: Have to set explicit focus to a page by clicking on it, after clicking Back",
+      "expectedSeverity": "High",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Loss of page focus after navigating back is a functional usability issue with an easy workaround of clicking on the page.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 16,
+      "sourceBugId": "526446",
+      "project": "Core",
+      "rawSeverity": "major",
+      "title": "[Core] Bug #526446: AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h",
+      "expectedSeverity": "High",
+      "actualSeverity": "High",
+      "confidence": 0.9,
+      "reason": "Compilation failure completely blocks building the software on the AIX platform.",
+      "tags": [
+        "compilation-error"
+      ],
+      "status": "triaged",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 17,
+      "sourceBugId": "243346",
+      "project": "JDT",
+      "rawSeverity": "major",
+      "title": "[JDT] Bug #243346: Package shows twice if name is part of another package name in Project  Explorer view",
+      "expectedSeverity": "High",
+      "actualSeverity": "Low",
+      "confidence": 0.9,
+      "reason": "Duplicate package display in the Project Explorer is a minor UI glitch with no loss of functionality or crash.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": false
+    },
+    {
+      "id": 18,
+      "sourceBugId": "403907",
+      "project": "Thunderbird",
+      "rawSeverity": "major",
+      "title": "[Thunderbird] Bug #403907: Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the sa",
+      "expectedSeverity": "High",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "Moving or deleting folders causes severe performance lag and high CPU usage, but the operation eventually completes without crashing or causing data loss.",
+      "tags": [
+        "performance",
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 19,
+      "sourceBugId": "452734",
+      "project": "Bugzilla",
+      "rawSeverity": "major",
+      "title": "[Bugzilla] Bug #452734: Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+      "expectedSeverity": "High",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "The inability to type keywords directly represents a functional regression in user input without causing a system crash or total blocking of core workflows.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 20,
+      "sourceBugId": "225404",
+      "project": "Platform",
+      "rawSeverity": "major",
+      "title": "[Platform] Bug #225404: Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event ",
+      "expectedSeverity": "High",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Failure to raise a FocusIn event when clicking specific padding areas near cell editors is a non-fatal UI focus handling bug.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 21,
+      "sourceBugId": "453801",
+      "project": "Core",
+      "rawSeverity": "major",
+      "title": "[Core] Bug #453801: Deferred (defer) external javascript fails to launch window.onload() if external CSS has b",
+      "expectedSeverity": "High",
+      "actualSeverity": "High",
+      "confidence": 0.88,
+      "reason": "Failure of the window.onload event to fire breaks critical page lifecycle execution logic under specific loading conditions.",
+      "tags": [
+        "ui"
+      ],
+      "status": "triaged",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 22,
+      "sourceBugId": "196328",
+      "project": "Platform",
+      "rawSeverity": "major",
+      "title": "[Platform] Bug #196328: Table viewer placed inside  a wizard does not expand vertically when size of the wizard ex",
+      "expectedSeverity": "High",
+      "actualSeverity": "Low",
+      "confidence": 0.9,
+      "reason": "The bug describes a minor UI layout issue where a component fails to resize vertically, causing no functional impairment or crash.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": false
+    },
+    {
+      "id": 23,
+      "sourceBugId": "430948",
+      "project": "Firefox",
+      "rawSeverity": "major",
+      "title": "[Firefox] Bug #430948: Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Boo",
+      "expectedSeverity": "High",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Drag-and-drop bookmarking is completely broken across multiple UI locations, but users can still create bookmarks using keyboard shortcuts or menu options.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 24,
+      "sourceBugId": "495558",
+      "project": "Core",
+      "rawSeverity": "major",
+      "title": "[Core] Bug #495558: Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+      "expectedSeverity": "High",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Missing audio during Ogg video playback on PPC Linux is a functional issue affecting media playback without causing a crash or crash-like failure.",
+      "tags": [
+        "audio"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 25,
+      "sourceBugId": "783525",
+      "project": "Core",
+      "rawSeverity": "normal",
+      "title": "[Core] Bug #783525: B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Redefining the error reporting policy for incorrect SIM PIN handling addresses a non-fatal functional logic edge case without causing a crash or security vulnerability.",
+      "tags": [
+        "auth",
+        "backend"
+      ],
+      "status": "triaged",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 26,
+      "sourceBugId": "580892",
+      "project": "Firefox",
+      "rawSeverity": "normal",
+      "title": "[Firefox] Bug #580892: Checking 'clear history when minefield closes' is not clearing cache on shutdown but on st",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "The setting defers cache clearance to startup instead of shutdown, causing unexpected behavior without resulting in a crash or data loss.",
+      "tags": [
+        "cache"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 27,
+      "sourceBugId": "626741",
+      "project": "Core",
+      "rawSeverity": "normal",
+      "title": "[Core] Bug #626741: At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "High",
+      "confidence": 0.94,
+      "reason": "An assertion failure in core URL parsing components indicates a crash or serious internal logic failure.",
+      "tags": [
+        "crash"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 28,
+      "sourceBugId": "365329",
+      "project": "Thunderbird",
+      "rawSeverity": "normal",
+      "title": "[Thunderbird] Bug #365329: string to date conversion returns wrong value for dates in february when run after 28th of",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "Incorrect date parsing for February dates after the 28th represents a non-fatal functional logic bug occurring under specific timing conditions.",
+      "tags": [
+        "backend"
+      ],
+      "status": "triaged",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 29,
+      "sourceBugId": "376911",
+      "project": "Bugzilla",
+      "rawSeverity": "normal",
+      "title": "[Bugzilla] Bug #376911: Setting charset in http headers from Bugzilla::CGI object charset property doesn't work wi",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "Setting the HTTP header charset fails specifically for non-text content-types, causing partial functional impact without crashing or losing data.",
+      "tags": [
+        "backend"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 30,
+      "sourceBugId": "198957",
+      "project": "Platform",
+      "rawSeverity": "normal",
+      "title": "[Platform] Bug #198957: Performance framework average and standard deviation computation is wrong when several com",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Incorrect metric calculation in the performance framework is a non-fatal functional flaw that affects reporting accuracy without causing crashes.",
+      "tags": [
+        "performance",
+        "backend"
+      ],
+      "status": "triaged",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 31,
+      "sourceBugId": "335496",
+      "project": "Platform",
+      "rawSeverity": "normal",
+      "title": "[Platform] Bug #335496: [Help] In Help View too much vertical white space between Scope and Alternate Search Expre",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Low",
+      "confidence": 0.95,
+      "reason": "The report describes a cosmetic visual layout issue regarding excess vertical white space with no functional impact.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 32,
+      "sourceBugId": "462441",
+      "project": "Core",
+      "rawSeverity": "normal",
+      "title": "[Core] Bug #462441: Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Low",
+      "confidence": 0.95,
+      "reason": "The issue describes a minor visual or cosmetic anomaly with the site identity button, impacting no functional workflows.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 33,
+      "sourceBugId": "818436",
+      "project": "Firefox",
+      "rawSeverity": "normal",
+      "title": "[Firefox] Bug #818436: [toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Allowing invalid docking configurations represents a non-fatal functional bug with limited impact.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 34,
+      "sourceBugId": "772679",
+      "project": "Core",
+      "rawSeverity": "normal",
+      "title": "[Core] Bug #772679: subpixel shifting causes visible shift of some lines on second scroll operation to hit bot",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Low",
+      "confidence": 0.9,
+      "reason": "The issue describes a minor visual rendering misalignment during scrolling with no functional impact or system instability.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 35,
+      "sourceBugId": "621363",
+      "project": "Core",
+      "rawSeverity": "normal",
+      "title": "[Core] Bug #621363: SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "The delayed state update until the next event loop run represents a non-fatal timing edge case with a functional workaround.",
+      "tags": [
+        "ipc"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 36,
+      "sourceBugId": "603919",
+      "project": "Core",
+      "rawSeverity": "normal",
+      "title": "[Core] Bug #603919: changed event should be changed even if we can't store the last used directory (for <input",
+      "expectedSeverity": "Medium",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Failure to dispatch the change event when directory storage fails is a non-fatal edge case affecting file input handling.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 37,
+      "sourceBugId": "474157",
+      "project": "Core",
+      "rawSeverity": "minor",
+      "title": "[Core] Bug #474157: Not always checking for plugin exception set with NPN_SetException after invoking an NPCla",
+      "expectedSeverity": "Low",
+      "actualSeverity": "High",
+      "confidence": 0.88,
+      "reason": "Missing exception checks after invoking NPClass callbacks can lead to unhandled error states or unexpected crashes in the plugin binding layer.",
+      "tags": [
+        "exception-handling"
+      ],
+      "status": "triaged",
+      "isExactMatch": false,
+      "isAdjacentMatch": false
+    },
+    {
+      "id": 38,
+      "sourceBugId": "599289",
+      "project": "Core",
+      "rawSeverity": "minor",
+      "title": "[Core] Bug #599289: default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Low",
+      "confidence": 0.95,
+      "reason": "Updating default font versions is a minor visual and localization maintenance request with no functional impact.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 39,
+      "sourceBugId": "523057",
+      "project": "Firefox",
+      "rawSeverity": "minor",
+      "title": "[Firefox] Bug #523057: dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in ",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "Dragging links results in duplicated URLs in the address bar, causing a minor functional issue with an easy workaround.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 40,
+      "sourceBugId": "297387",
+      "project": "CDT",
+      "rawSeverity": "minor",
+      "title": "[CDT] Bug #297387: [DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC addre",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "The issue involves unexpected keyboard navigation behavior when a specific UI element has focus, causing minor functional disruption without crashing or preventing core usage.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 41,
+      "sourceBugId": "203959",
+      "project": "CDT",
+      "rawSeverity": "trivial",
+      "title": "[CDT] Bug #203959: DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Low",
+      "confidence": 0.9,
+      "reason": "The issue involves a minor text mismatch between a Table of Contents navigation link and the target page title, which has no impact on functionality.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 42,
+      "sourceBugId": "437856",
+      "project": "Firefox",
+      "rawSeverity": "minor",
+      "title": "[Firefox] Bug #437856: Autocomplete only uses partial search string if 'tab' is pressed too quickly after enterin",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Medium",
+      "confidence": 0.88,
+      "reason": "This is a non-fatal race condition edge case in the autocomplete feature that has partial impact and can be avoided by slight timing adjustments.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 43,
+      "sourceBugId": "255952",
+      "project": "CDT",
+      "rawSeverity": "minor",
+      "title": "[CDT] Bug #255952: \"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the names",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Medium",
+      "confidence": 0.9,
+      "reason": "The 'Add include' refactoring tool incorrectly adds an unnecessary 'using namespace' directive inside namespace scopes, causing unexpected code generation without causing a crash or blocking usage.",
+      "tags": [
+        "refactoring"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 44,
+      "sourceBugId": "625920",
+      "project": "Firefox",
+      "rawSeverity": "trivial",
+      "title": "[Firefox] Bug #625920: Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Low",
+      "confidence": 0.95,
+      "reason": "The issue is a minor cosmetic truncation of font descenders in tab titles with no functional impact.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 45,
+      "sourceBugId": "562452",
+      "project": "Firefox",
+      "rawSeverity": "trivial",
+      "title": "[Firefox] Bug #562452: Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Low",
+      "confidence": 0.95,
+      "reason": "Drawing an unexpected focus ring is a minor visual/cosmetic issue with no impact on functionality.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 46,
+      "sourceBugId": "394085",
+      "project": "Firefox",
+      "rawSeverity": "trivial",
+      "title": "[Firefox] Bug #394085: The star button is touching the right border of the location bar drop down button",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Low",
+      "confidence": 0.95,
+      "reason": "This is a minor UI visual alignment issue with no functional impact.",
+      "tags": [
+        "ui"
+      ],
+      "status": "pending_review",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 47,
+      "sourceBugId": "519676",
+      "project": "Bugzilla",
+      "rawSeverity": "minor",
+      "title": "[Bugzilla] Bug #519676: You cannot set parameters to empty values with an \"answers\" file when creating an installa",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Medium",
+      "confidence": 0.85,
+      "reason": "Inability to set parameters to empty values using an answers file represents a functional limitation with partial impact on installation configuration.",
+      "tags": [
+        "configuration"
+      ],
+      "status": "pending_review",
+      "isExactMatch": false,
+      "isAdjacentMatch": true
+    },
+    {
+      "id": 48,
+      "sourceBugId": "297762",
+      "project": "Platform",
+      "rawSeverity": "minor",
+      "title": "[Platform] Bug #297762: [Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view ",
+      "expectedSeverity": "Low",
+      "actualSeverity": "Low",
+      "confidence": 0.9,
+      "reason": "The failure of breakpoint groups to automatically expand on first open is a minor UI behavior issue with a trivial manual workaround.",
+      "tags": [
+        "ui"
+      ],
+      "status": "triaged",
+      "isExactMatch": true,
+      "isAdjacentMatch": true
+    }
+  ]
+}

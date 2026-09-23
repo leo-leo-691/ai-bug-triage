@@ -1,0 +1,111 @@
+{
+  "chosenRule": "R1",
+  "ruleName": "R1 (Baseline OR)",
+  "ruleType": "baseline_or",
+  "description": "Critical if LLM=Critical OR baseline=Critical",
+  "parameters": {},
+  "devBenchmarkMetrics": {
+    "devBugCount": 148,
+    "groundTruthCriticals": 37,
+    "criticalTP": 12,
+    "criticalFP": 4,
+    "criticalFN": 25,
+    "criticalTN": 107,
+    "criticalPrecision": 0.75,
+    "criticalRecall": 0.3243,
+    "criticalF1": 0.4528,
+    "overallAccuracy": 0.4189,
+    "macroF1": 0.4075
+  },
+  "candidateComparison": [
+    {
+      "Candidate Rule": "R1 (Baseline OR)",
+      "Crit TP": 12,
+      "Crit FP (False-Crit)": 4,
+      "Crit FN": 25,
+      "Crit Prec": "75.0%",
+      "Crit Rec": "32.4%",
+      "Crit F1": "45.3%",
+      "Macro F1": "40.7%",
+      "Accuracy": "41.9%"
+    },
+    {
+      "Candidate Rule": "R2 (Keyword Gated K>=1)",
+      "Crit TP": 12,
+      "Crit FP (False-Crit)": 4,
+      "Crit FN": 25,
+      "Crit Prec": "75.0%",
+      "Crit Rec": "32.4%",
+      "Crit F1": "45.3%",
+      "Macro F1": "40.7%",
+      "Accuracy": "41.9%"
+    },
+    {
+      "Candidate Rule": "R3 (Confidence Gated T<0.95)",
+      "Crit TP": 12,
+      "Crit FP (False-Crit)": 4,
+      "Crit FN": 25,
+      "Crit Prec": "75.0%",
+      "Crit Rec": "32.4%",
+      "Crit F1": "45.3%",
+      "Macro F1": "40.7%",
+      "Accuracy": "41.9%"
+    },
+    {
+      "Candidate Rule": "R3 (Confidence Gated T<0.90)",
+      "Crit TP": 9,
+      "Crit FP (False-Crit)": 4,
+      "Crit FN": 28,
+      "Crit Prec": "69.2%",
+      "Crit Rec": "24.3%",
+      "Crit F1": "36.0%",
+      "Macro F1": "38.2%",
+      "Accuracy": "39.9%"
+    },
+    {
+      "Candidate Rule": "R4 (LLM-only control)",
+      "Crit TP": 0,
+      "Crit FP (False-Crit)": 2,
+      "Crit FN": 37,
+      "Crit Prec": "0.0%",
+      "Crit Rec": "0.0%",
+      "Crit F1": "0.0%",
+      "Macro F1": "28.7%",
+      "Accuracy": "34.5%"
+    },
+    {
+      "Candidate Rule": "R2 (Keyword Gated K>=2)",
+      "Crit TP": 0,
+      "Crit FP (False-Crit)": 2,
+      "Crit FN": 37,
+      "Crit Prec": "0.0%",
+      "Crit Rec": "0.0%",
+      "Crit F1": "0.0%",
+      "Macro F1": "28.7%",
+      "Accuracy": "34.5%"
+    },
+    {
+      "Candidate Rule": "R2 (Keyword Gated K>=3)",
+      "Crit TP": 0,
+      "Crit FP (False-Crit)": 2,
+      "Crit FN": 37,
+      "Crit Prec": "0.0%",
+      "Crit Rec": "0.0%",
+      "Crit F1": "0.0%",
+      "Macro F1": "28.7%",
+      "Accuracy": "34.5%"
+    },
+    {
+      "Candidate Rule": "R3 (Confidence Gated T<0.85)",
+      "Crit TP": 0,
+      "Crit FP (False-Crit)": 2,
+      "Crit FN": 37,
+      "Crit Prec": "0.0%",
+      "Crit Rec": "0.0%",
+      "Crit F1": "0.0%",
+      "Macro F1": "28.7%",
+      "Accuracy": "34.5%"
+    }
+  ],
+  "tunedAt": "2026-09-22T16:13:00.673Z"
+}

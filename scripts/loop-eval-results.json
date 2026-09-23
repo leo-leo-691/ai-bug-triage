@@ -1,0 +1,1976 @@
+{
+  "evaluatedAt": "2026-09-14T18:37:25.488Z",
+  "numRuns": 5,
+  "aggregateStats": {
+    "overallAccuracy": {
+      "mean": 66.67,
+      "stdDev": 0
+    },
+    "adjacentAccuracy": {
+      "mean": 100,
+      "stdDev": 0
+    },
+    "stabilityScore": 88.89,
+    "stableCount": 16,
+    "totalBugs": 18,
+    "unstableBugs": [
+      {
+        "id": "4",
+        "title": "Server crashes completely when more than 50 users log in simultaneously",
+        "uniqueSeverities": [
+          "Critical",
+          "High"
+        ]
+      },
+      {
+        "id": "12",
+        "title": "Email notifications delayed by several hours during peak usage",
+        "uniqueSeverities": [
+          "High",
+          "Medium"
+        ]
+      }
+    ]
+  },
+  "runs": [
+    {
+      "runNumber": 1,
+      "accuracyPercentage": 66.67,
+      "adjacentAccuracyPercentage": 100,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 3,
+          "High": 2,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 3,
+          "Medium": 1,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 2,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "sampleRecords": [
+        {
+          "id": 1,
+          "title": "Application crashes and all unsaved data is lost when clicking Save",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "data-loss"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "SQL injection vulnerability in login form",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Payment processing charges customers twice for a single transaction",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "payment",
+            "backend"
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Server crashes completely when more than 50 users log in simultaneously",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "backend",
+            "auth"
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Clicking save button crashes the app and wipes unsaved changes",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 1,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "5a52051e-b1b6-4ccc-84cf-52d1a6e66d82",
+          "similarityScore": 0.9022,
+          "tags": [
+            "crash",
+            "data-loss",
+            "ui"
+          ]
+        },
+        {
+          "id": 6,
+          "title": "Checkout page freezes when applying a discount code",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend",
+            "payment",
+            "performance"
+          ]
+        },
+        {
+          "id": 7,
+          "title": "User passwords visible in plain text in browser network requests",
+          "expectedSeverity": "High",
+          "actualSeverity": "Critical",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 8,
+          "title": "File upload fails for all files larger than 10MB with no error message",
+          "expectedSeverity": "High",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui",
+            "backend"
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Search results return incorrect data for about 30% of queries",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 10,
+          "title": "Discount code entry causes checkout to hang and become unresponsive",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 6,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "98fb726b-19d8-47fb-ad7f-e7e4bc053c9c",
+          "similarityScore": 0.9074,
+          "tags": [
+            "performance",
+            "ui",
+            "payment"
+          ]
+        },
+        {
+          "id": 11,
+          "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 12,
+          "title": "Email notifications delayed by several hours during peak usage",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 13,
+          "title": "Dashboard chart labels overlap on tablet-sized screens",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 14,
+          "title": "Export to CSV produces a file with incorrect column headers",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 15,
+          "title": "Submit button color doesn't match the rest of the UI theme",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 16,
+          "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.99,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 17,
+          "title": "Tooltip text is slightly misaligned on hover for the help icon",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 18,
+          "title": "Footer copyright year shows last year instead of current year",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 19,
+          "title": "Something feels off with the reports page, not sure what exactly",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 20,
+          "title": "App seems slower than before but can't pinpoint when it started",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance"
+          ]
+        }
+      ]
+    },
+    {
+      "runNumber": 2,
+      "accuracyPercentage": 66.67,
+      "adjacentAccuracyPercentage": 100,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 3,
+          "High": 2,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 3,
+          "Medium": 1,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 2,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "sampleRecords": [
+        {
+          "id": 1,
+          "title": "Application crashes and all unsaved data is lost when clicking Save",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "data-loss"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "SQL injection vulnerability in login form",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Payment processing charges customers twice for a single transaction",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "payment",
+            "backend"
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Server crashes completely when more than 50 users log in simultaneously",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "auth",
+            "performance"
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Clicking save button crashes the app and wipes unsaved changes",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 1,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "53557c55-9255-4696-b83d-eeee18beb0af",
+          "similarityScore": 0.9022,
+          "tags": [
+            "crash",
+            "data-loss",
+            "ui"
+          ]
+        },
+        {
+          "id": 6,
+          "title": "Checkout page freezes when applying a discount code",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend",
+            "performance",
+            "payment"
+          ]
+        },
+        {
+          "id": 7,
+          "title": "User passwords visible in plain text in browser network requests",
+          "expectedSeverity": "High",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 8,
+          "title": "File upload fails for all files larger than 10MB with no error message",
+          "expectedSeverity": "High",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui",
+            "backend"
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Search results return incorrect data for about 30% of queries",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend",
+            "search"
+          ]
+        },
+        {
+          "id": 10,
+          "title": "Discount code entry causes checkout to hang and become unresponsive",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 6,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "49592a46-550c-41a7-8eda-80fa00d21520",
+          "similarityScore": 0.9074,
+          "tags": [
+            "performance",
+            "ui",
+            "payment"
+          ]
+        },
+        {
+          "id": 11,
+          "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 12,
+          "title": "Email notifications delayed by several hours during peak usage",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 13,
+          "title": "Dashboard chart labels overlap on tablet-sized screens",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 14,
+          "title": "Export to CSV produces a file with incorrect column headers",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 15,
+          "title": "Submit button color doesn't match the rest of the UI theme",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 16,
+          "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 17,
+          "title": "Tooltip text is slightly misaligned on hover for the help icon",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 18,
+          "title": "Footer copyright year shows last year instead of current year",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 19,
+          "title": "Something feels off with the reports page, not sure what exactly",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 20,
+          "title": "App seems slower than before but can't pinpoint when it started",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance"
+          ]
+        }
+      ]
+    },
+    {
+      "runNumber": 3,
+      "accuracyPercentage": 66.67,
+      "adjacentAccuracyPercentage": 100,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 3,
+          "High": 2,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 3,
+          "Medium": 1,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 2,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "sampleRecords": [
+        {
+          "id": 1,
+          "title": "Application crashes and all unsaved data is lost when clicking Save",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "data-loss"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "SQL injection vulnerability in login form",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Payment processing charges customers twice for a single transaction",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "payment",
+            "backend"
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Server crashes completely when more than 50 users log in simultaneously",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.92,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Clicking save button crashes the app and wipes unsaved changes",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 1,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "fbd9c2f0-19f2-40bb-b59d-bb69adc40ed0",
+          "similarityScore": 0.9022,
+          "tags": [
+            "crash",
+            "data-loss",
+            "ui"
+          ]
+        },
+        {
+          "id": 6,
+          "title": "Checkout page freezes when applying a discount code",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend",
+            "performance",
+            "payment"
+          ]
+        },
+        {
+          "id": 7,
+          "title": "User passwords visible in plain text in browser network requests",
+          "expectedSeverity": "High",
+          "actualSeverity": "Critical",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 8,
+          "title": "File upload fails for all files larger than 10MB with no error message",
+          "expectedSeverity": "High",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui",
+            "backend"
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Search results return incorrect data for about 30% of queries",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 10,
+          "title": "Discount code entry causes checkout to hang and become unresponsive",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 6,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "24a72f18-8730-4722-a984-1ba201edbf78",
+          "similarityScore": 0.9074,
+          "tags": [
+            "payment",
+            "performance",
+            "ui"
+          ]
+        },
+        {
+          "id": 11,
+          "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 12,
+          "title": "Email notifications delayed by several hours during peak usage",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 13,
+          "title": "Dashboard chart labels overlap on tablet-sized screens",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 14,
+          "title": "Export to CSV produces a file with incorrect column headers",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 15,
+          "title": "Submit button color doesn't match the rest of the UI theme",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 16,
+          "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 17,
+          "title": "Tooltip text is slightly misaligned on hover for the help icon",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 18,
+          "title": "Footer copyright year shows last year instead of current year",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 19,
+          "title": "Something feels off with the reports page, not sure what exactly",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 20,
+          "title": "App seems slower than before but can't pinpoint when it started",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance"
+          ]
+        }
+      ]
+    },
+    {
+      "runNumber": 4,
+      "accuracyPercentage": 66.67,
+      "adjacentAccuracyPercentage": 100,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 2,
+          "High": 3,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 3,
+          "Medium": 1,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 3,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "sampleRecords": [
+        {
+          "id": 1,
+          "title": "Application crashes and all unsaved data is lost when clicking Save",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "data-loss"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "SQL injection vulnerability in login form",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Payment processing charges customers twice for a single transaction",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "payment",
+            "backend"
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Server crashes completely when more than 50 users log in simultaneously",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "auth",
+            "performance"
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Clicking save button crashes the app and wipes unsaved changes",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.93,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 1,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "a026df7f-7ea9-4583-827f-74a62be2fc43",
+          "similarityScore": 0.9022,
+          "tags": [
+            "crash",
+            "data-loss"
+          ]
+        },
+        {
+          "id": 6,
+          "title": "Checkout page freezes when applying a discount code",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend",
+            "performance",
+            "payment"
+          ]
+        },
+        {
+          "id": 7,
+          "title": "User passwords visible in plain text in browser network requests",
+          "expectedSeverity": "High",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 8,
+          "title": "File upload fails for all files larger than 10MB with no error message",
+          "expectedSeverity": "High",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui",
+            "backend"
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Search results return incorrect data for about 30% of queries",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 10,
+          "title": "Discount code entry causes checkout to hang and become unresponsive",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 6,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "e2eaa236-28ec-4fd5-bec8-931181f94769",
+          "similarityScore": 0.9074,
+          "tags": [
+            "payment",
+            "performance",
+            "ui"
+          ]
+        },
+        {
+          "id": 11,
+          "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 12,
+          "title": "Email notifications delayed by several hours during peak usage",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.85,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 13,
+          "title": "Dashboard chart labels overlap on tablet-sized screens",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Low",
+          "confidence": 0.92,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 14,
+          "title": "Export to CSV produces a file with incorrect column headers",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 15,
+          "title": "Submit button color doesn't match the rest of the UI theme",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 16,
+          "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 17,
+          "title": "Tooltip text is slightly misaligned on hover for the help icon",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 18,
+          "title": "Footer copyright year shows last year instead of current year",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 19,
+          "title": "Something feels off with the reports page, not sure what exactly",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 20,
+          "title": "App seems slower than before but can't pinpoint when it started",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance"
+          ]
+        }
+      ]
+    },
+    {
+      "runNumber": 5,
+      "accuracyPercentage": 66.67,
+      "adjacentAccuracyPercentage": 100,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 3,
+          "High": 2,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 3,
+          "Medium": 1,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 2,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "sampleRecords": [
+        {
+          "id": 1,
+          "title": "Application crashes and all unsaved data is lost when clicking Save",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "data-loss"
+          ]
+        },
+        {
+          "id": 2,
+          "title": "SQL injection vulnerability in login form",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth",
+            "backend"
+          ]
+        },
+        {
+          "id": 3,
+          "title": "Payment processing charges customers twice for a single transaction",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.96,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "payment",
+            "backend"
+          ]
+        },
+        {
+          "id": 4,
+          "title": "Server crashes completely when more than 50 users log in simultaneously",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "crash",
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 5,
+          "title": "Clicking save button crashes the app and wipes unsaved changes",
+          "expectedSeverity": "Critical",
+          "actualSeverity": "High",
+          "confidence": 0.93,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 1,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "333dafe7-aa44-4e97-897f-47445f4b71ca",
+          "similarityScore": 0.9022,
+          "tags": [
+            "crash",
+            "data-loss",
+            "ui"
+          ]
+        },
+        {
+          "id": 6,
+          "title": "Checkout page freezes when applying a discount code",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend",
+            "performance",
+            "payment"
+          ]
+        },
+        {
+          "id": 7,
+          "title": "User passwords visible in plain text in browser network requests",
+          "expectedSeverity": "High",
+          "actualSeverity": "Critical",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "auth"
+          ]
+        },
+        {
+          "id": 8,
+          "title": "File upload fails for all files larger than 10MB with no error message",
+          "expectedSeverity": "High",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui",
+            "backend"
+          ]
+        },
+        {
+          "id": 9,
+          "title": "Search results return incorrect data for about 30% of queries",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 10,
+          "title": "Discount code entry causes checkout to hang and become unresponsive",
+          "expectedSeverity": "High",
+          "actualSeverity": "High",
+          "confidence": 0.91,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": 6,
+          "actualDuplicateDetected": true,
+          "flaggedAsDuplicate": true,
+          "matchedBugId": "2515b034-6955-419b-9224-c230263d5ed1",
+          "similarityScore": 0.9074,
+          "tags": [
+            "ui",
+            "performance",
+            "payment"
+          ]
+        },
+        {
+          "id": 11,
+          "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 12,
+          "title": "Email notifications delayed by several hours during peak usage",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "High",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance",
+            "backend"
+          ]
+        },
+        {
+          "id": 13,
+          "title": "Dashboard chart labels overlap on tablet-sized screens",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 14,
+          "title": "Export to CSV produces a file with incorrect column headers",
+          "expectedSeverity": "Medium",
+          "actualSeverity": "Medium",
+          "confidence": 0.88,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "backend"
+          ]
+        },
+        {
+          "id": 15,
+          "title": "Submit button color doesn't match the rest of the UI theme",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 16,
+          "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 17,
+          "title": "Tooltip text is slightly misaligned on hover for the help icon",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.95,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 18,
+          "title": "Footer copyright year shows last year instead of current year",
+          "expectedSeverity": "Low",
+          "actualSeverity": "Low",
+          "confidence": 0.98,
+          "status": "triaged",
+          "isAmbiguous": false,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 19,
+          "title": "Something feels off with the reports page, not sure what exactly",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.9,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "ui"
+          ]
+        },
+        {
+          "id": 20,
+          "title": "App seems slower than before but can't pinpoint when it started",
+          "expectedSeverity": "Ambiguous",
+          "actualSeverity": "Low",
+          "confidence": 0.85,
+          "status": "triaged",
+          "isAmbiguous": true,
+          "expectedDuplicateOf": null,
+          "actualDuplicateDetected": false,
+          "flaggedAsDuplicate": false,
+          "matchedBugId": null,
+          "similarityScore": null,
+          "tags": [
+            "performance"
+          ]
+        }
+      ]
+    }
+  ]
+}

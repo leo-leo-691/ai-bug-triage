@@ -1,0 +1,2378 @@
+{
+  "gemini": {
+    "diagnostic": {
+      "total": 18,
+      "exactAccuracy": 66.66666666666666,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 3,
+          "High": 2,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 3,
+          "Medium": 1,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 2,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 3,
+          "fp": 1,
+          "fn": 2,
+          "precision": 75,
+          "recall": 60,
+          "f1": 66.66666666666667
+        },
+        "High": {
+          "tp": 3,
+          "fp": 3,
+          "fn": 2,
+          "precision": 50,
+          "recall": 60,
+          "f1": 54.54545454545455
+        },
+        "Medium": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 2,
+          "precision": 66.66666666666666,
+          "recall": 50,
+          "f1": 57.14285714285714
+        },
+        "Low": {
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "precision": 80,
+          "recall": 100,
+          "f1": 88.88888888888889
+        }
+      }
+    },
+    "external": {
+      "total": 48,
+      "exactAccuracy": 39.58333333333333,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 1,
+          "High": 8,
+          "Medium": 3,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 0,
+          "High": 2,
+          "Medium": 8,
+          "Low": 2
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 9,
+          "Low": 3
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 5,
+          "Low": 7
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 11,
+          "precision": 100,
+          "recall": 8.333333333333332,
+          "f1": 15.384615384615383
+        },
+        "High": {
+          "tp": 2,
+          "fp": 8,
+          "fn": 10,
+          "precision": 20,
+          "recall": 16.666666666666664,
+          "f1": 18.18181818181818
+        },
+        "Medium": {
+          "tp": 9,
+          "fp": 16,
+          "fn": 3,
+          "precision": 36,
+          "recall": 75,
+          "f1": 48.648648648648646
+        },
+        "Low": {
+          "tp": 7,
+          "fp": 5,
+          "fn": 5,
+          "precision": 58.333333333333336,
+          "recall": 58.333333333333336,
+          "f1": 58.33333333333333
+        }
+      }
+    },
+    "records": [
+      {
+        "id": "diag-1",
+        "title": "Application crashes and all unsaved data is lost when clicking Save",
+        "description": "Clicking the save button causes an immediate crash; nothing is persisted and the session must be restarted",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.95,
+        "reason": "The save functionality is completely broken, causing application crashes and preventing data persistence without a workaround."
+      },
+      {
+        "id": "diag-2",
+        "title": "SQL injection vulnerability in login form",
+        "description": "The login form does not sanitize input, allowing crafted queries to access unauthorized database records",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.98,
+        "reason": "SQL injection is a critical security vulnerability that allows unauthorized access to confidential database records."
+      },
+      {
+        "id": "diag-3",
+        "title": "Payment processing charges customers twice for a single transaction",
+        "description": "Users report duplicate charges appearing on their card statement after a single checkout",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.95,
+        "reason": "Duplicate payment processing directly causes financial loss to customers and poses major legal/operational risks."
+      },
+      {
+        "id": "diag-4",
+        "title": "Server crashes completely when more than 50 users log in simultaneously",
+        "description": "Load testing shows a full server crash and downtime once concurrent logins exceed 50",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.95,
+        "reason": "Full server crash leading to complete service downtime under moderate user concurrency."
+      },
+      {
+        "id": "diag-5",
+        "title": "Clicking save button crashes the app and wipes unsaved changes",
+        "description": "Same crash-on-save behavior as reported elsewhere; all in-progress edits are lost",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.95,
+        "reason": "The save functionality causes an immediate application crash resulting in the loss of in-progress work."
+      },
+      {
+        "id": "diag-6",
+        "title": "Checkout page freezes when applying a discount code",
+        "description": "Clicking \"Apply Promo Code\" causes a 500 error and the browser tab becomes unresponsive",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.92,
+        "reason": "Applying a discount code causes a server error and browser freeze, disrupting a critical step in the checkout flow."
+      },
+      {
+        "id": "diag-7",
+        "title": "User passwords visible in plain text in browser network requests",
+        "description": "Inspecting network traffic during login shows the password field unencrypted in the request payload",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.95,
+        "reason": "Exposing user passwords in plain text over network requests represents a critical security vulnerability."
+      },
+      {
+        "id": "diag-8",
+        "title": "File upload fails for all files larger than 10MB with no error message",
+        "description": "Large uploads silently fail; the UI shows a spinner indefinitely with no feedback to the user",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "File uploads above 10MB fail silently without feedback, but smaller file uploads remain functional as a workaround."
+      },
+      {
+        "id": "diag-9",
+        "title": "Search results return incorrect data for about 30% of queries",
+        "description": "A sample of 20 test queries showed 6 returning results unrelated to the search term",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "A core feature is experiencing severe functional degradation affecting a significant portion of user queries with no clear workaround."
+      },
+      {
+        "id": "diag-10",
+        "title": "Discount code entry causes checkout to hang and become unresponsive",
+        "description": "Applying a promo code at checkout freezes the page, matching other reports of checkout instability",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.93,
+        "reason": "Applying a discount code freezes the checkout process, severely impacting a critical user transaction flow."
+      },
+      {
+        "id": "diag-11",
+        "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+        "description": "Upload works but is unusually slow under normal network conditions, no data loss",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "The upload feature completes successfully without data loss, but suffers from significant performance slowness that causes user inconvenience."
+      },
+      {
+        "id": "diag-12",
+        "title": "Email notifications delayed by several hours during peak usage",
+        "description": "Notification emails are eventually delivered but with a multi-hour lag during high-traffic periods",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "The notification service experiences severe performance degradation under heavy load, causing significant delivery delays for time-sensitive emails."
+      },
+      {
+        "id": "diag-13",
+        "title": "Dashboard chart labels overlap on tablet-sized screens",
+        "description": "Chart legends visually overlap between 768px-1024px viewport widths; desktop and mobile are unaffected",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.92,
+        "reason": "It is a minor layout overlapping issue restricted to specific viewport sizes that does not prevent viewing or using the application."
+      },
+      {
+        "id": "diag-14",
+        "title": "Export to CSV produces a file with incorrect column headers",
+        "description": "The exported file has data in the right order but header row labels are shifted by one column",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "The exported CSV contains mislabeled headers, but the core data remains intact and can be easily adjusted by the user."
+      },
+      {
+        "id": "diag-15",
+        "title": "Submit button color doesn't match the rest of the UI theme",
+        "description": "Minor visual inconsistency; button is functional, just the wrong shade of blue",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.98,
+        "reason": "The bug is a minor visual inconsistency that has no impact on functionality."
+      },
+      {
+        "id": "diag-16",
+        "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+        "description": "Cosmetic spelling error in static text, no functional impact",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.98,
+        "reason": "It is a minor spelling typo in static text with no functional impact."
+      },
+      {
+        "id": "diag-17",
+        "title": "Tooltip text is slightly misaligned on hover for the help icon",
+        "description": "Tooltip appears a few pixels off from the icon it's attached to",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.98,
+        "reason": "Minor visual alignment issue with no impact on functionality."
+      },
+      {
+        "id": "diag-18",
+        "title": "Footer copyright year shows last year instead of current year",
+        "description": "Static text bug, purely cosmetic, no functional impact",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.98,
+        "reason": "This is a minor cosmetic text error with zero impact on functionality."
+      },
+      {
+        "id": "ext-1",
+        "title": "[Core] Bug #379612: arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+        "description": "arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "Missing visual expand indicators in tree views cause significant usability friction, though tree nodes may still be navigable via keyboard or double-clicking."
+      },
+      {
+        "id": "ext-2",
+        "title": "[Bugzilla] Bug #532493: [SECURITY] Restricting a bug to a group while moving it to another product has no effect i",
+        "description": "[SECURITY] Restricting a bug to a group while moving it to another product has no effect if the group is not used by both products",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Critical",
+        "confidence": 0.9,
+        "reason": "Restricted security data is exposed due to a failure in access control enforcement during product migration."
+      },
+      {
+        "id": "ext-3",
+        "title": "[Core] Bug #580187: TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq'",
+        "description": "TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq' is 'immd' which has type float64 (expected int64): 0\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "An assertion failure in the JIT compiler backend leads to application crashes during code generation."
+      },
+      {
+        "id": "ext-4",
+        "title": "[Core] Bug #557060: [Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABV",
+        "description": "[Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABVexception@stdext@@@Z entry point not found in MSVCP80D.dll\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Application startup is completely blocked due to a missing runtime DLL entry point in the debug build."
+      },
+      {
+        "id": "ext-5",
+        "title": "[Core] Bug #508456: [HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+        "description": "[HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "The application freezes completely when parsing large HTML tables, causing severe performance degradation and loss of responsiveness."
+      },
+      {
+        "id": "ext-6",
+        "title": "[Core] Bug #399843: \"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, ov",
+        "description": "\"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, overflowing height",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "The bug causes an application crash in the rendering engine when processing specific CSS layout conditions."
+      },
+      {
+        "id": "ext-7",
+        "title": "[Core] Bug #373589: Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has bee",
+        "description": "Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has been removed from the document",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "The application crashes due to an unhandled state when attempting to access properties of a detached DOM element."
+      },
+      {
+        "id": "ext-8",
+        "title": "[Platform] Bug #132020: I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Sim",
+        "description": "I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Simultaneous Release",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "The Help Contents window failing to open is a functional defect affecting a secondary feature without impacting core application workflows."
+      },
+      {
+        "id": "ext-9",
+        "title": "[Core] Bug #330367: Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set",
+        "description": "Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set at the same time while checking other data.",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "The bug causes a complete application crash under specific DOM and event handling conditions."
+      },
+      {
+        "id": "ext-10",
+        "title": "[Platform] Bug #323763: Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+        "description": "Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.95,
+        "reason": "The application crashes immediately upon startup, completely preventing usage with no workaround."
+      },
+      {
+        "id": "ext-11",
+        "title": "[Core] Bug #767775: Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!!",
+        "description": "Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!! ABORT: __delete__()d actor: file e:/builds/moz2_slave/rel-m-rel-w32-bld/build/obj-firefox/ipc/ipdl/PPluginInstance.cpp, line 28\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "The bug causes an unhandled browser crash during plugin IPC actor deletion, leading to application instability."
+      },
+      {
+        "id": "ext-12",
+        "title": "[Bugzilla] Bug #652427: Going back to the new bug page looses the description if possible duplicates have been sea",
+        "description": "Going back to the new bug page looses the description if possible duplicates have been searched for",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "Losing unsaved form input during a specific navigation flow is a functional defect with obvious workarounds."
+      },
+      {
+        "id": "ext-13",
+        "title": "[Bugzilla] Bug #465606: If a user doesn't have access to change target milestone, it gets set back to default.",
+        "description": "If a user doesn't have access to change target milestone, it gets set back to default.",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "An unauthorized user's edit inadvertently resets the target milestone field to default, causing a functional permission defect that can be manually corrected by an authorized user."
+      },
+      {
+        "id": "ext-14",
+        "title": "[Core] Bug #328128: nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user ",
+        "description": "nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user set value if it is set to its default value",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.95,
+        "reason": "This is a documentation update request for an API method and has no impact on system functionality or performance."
+      },
+      {
+        "id": "ext-15",
+        "title": "[Core] Bug #504450: Have to set explicit focus to a page by clicking on it, after clicking Back",
+        "description": "Have to set explicit focus to a page by clicking on it, after clicking Back",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "Focus loss after navigation is a functional usability defect with an easy workaround of clicking the page."
+      },
+      {
+        "id": "ext-16",
+        "title": "[Core] Bug #526446: AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h",
+        "description": "AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h\", line 427.5: 1540-0130 (S) \"AP\" is not declared",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Compilation error completely blocks building the codebase on the AIX platform with no user workaround."
+      },
+      {
+        "id": "ext-17",
+        "title": "[JDT] Bug #243346: Package shows twice if name is part of another package name in Project  Explorer view",
+        "description": "Package shows twice if name is part of another package name in Project  Explorer view",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "This is an edge-case visual duplication defect in the project explorer that does not cause data loss or crash the application."
+      },
+      {
+        "id": "ext-18",
+        "title": "[Thunderbird] Bug #403907: Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the sa",
+        "description": "Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the same account (even trash) take a lot of cpu and one to two minutes of processing",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Folder operations cause severe performance degradation, taking excessive CPU and up to two minutes to process."
+      },
+      {
+        "id": "ext-19",
+        "title": "[Bugzilla] Bug #452734: Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+        "description": "Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Direct text entry for keywords is broken after the update, causing a functional usability regression with likely alternative selection workarounds."
+      },
+      {
+        "id": "ext-20",
+        "title": "[Platform] Bug #225404: Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event ",
+        "description": "Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event for tree on vista",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Missing focus event when clicking empty space around cell editors represents an edge-case UI interaction defect with simple workarounds."
+      },
+      {
+        "id": "ext-21",
+        "title": "[Core] Bug #453801: Deferred (defer) external javascript fails to launch window.onload() if external CSS has b",
+        "description": "Deferred (defer) external javascript fails to launch window.onload() if external CSS has been loaded after the deferred script",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "The issue breaks standard page loading logic under a specific resource ordering sequence, but can be easily worked around by reordering HTML tags."
+      },
+      {
+        "id": "ext-22",
+        "title": "[Platform] Bug #196328: Table viewer placed inside  a wizard does not expand vertically when size of the wizard ex",
+        "description": "Table viewer placed inside  a wizard does not expand vertically when size of the wizard expands",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "This is a minor UI layout defect where a component fails to resize dynamically with its parent container, causing no loss of functionality."
+      },
+      {
+        "id": "ext-23",
+        "title": "[Firefox] Bug #430948: Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Boo",
+        "description": "Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Bookmarks does not work.",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.9,
+        "reason": "Drag-and-drop bookmarking is functional defect, but users can still add bookmarks via keyboard shortcuts or context menus."
+      },
+      {
+        "id": "ext-24",
+        "title": "[Core] Bug #495558: Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+        "description": "Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Audio playback failure on a specific platform architecture build (PPC Linux) represents an edge-case functional defect."
+      },
+      {
+        "id": "ext-25",
+        "title": "[Core] Bug #783525: B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+        "description": "B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "This report involves redefining error handling policy for SIM lock PIN entries, representing a functional behavior adjustment rather than a system-breaking bug."
+      },
+      {
+        "id": "ext-26",
+        "title": "[Firefox] Bug #580892: Checking 'clear history when minefield closes' is not clearing cache on shutdown but on st",
+        "description": "Checking 'clear history when minefield closes' is not clearing cache on shutdown but on startup",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "The cache clearing feature still functions, but executes on application startup rather than at shutdown as intended."
+      },
+      {
+        "id": "ext-27",
+        "title": "[Core] Bug #626741: At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION",
+        "description": "At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION: attempt to modify an immutable nsStandardURL: 'Error', file nsStandardURL.cpp, line 1164\"",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "An assertion failure triggered under a specific extension setup represents an edge-case software defect."
+      },
+      {
+        "id": "ext-28",
+        "title": "[Thunderbird] Bug #365329: string to date conversion returns wrong value for dates in february when run after 28th of",
+        "description": "string to date conversion returns wrong value for dates in february when run after 28th of each month",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "This is a functional date-handling bug triggered under specific temporal conditions (edge case failure)."
+      },
+      {
+        "id": "ext-29",
+        "title": "[Bugzilla] Bug #376911: Setting charset in http headers from Bugzilla::CGI object charset property doesn't work wi",
+        "description": "Setting charset in http headers from Bugzilla::CGI object charset property doesn't work with content-types others as text subtype",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "It represents a functional defect when setting HTTP header parameters for non-text content types, but likely has functional workarounds."
+      },
+      {
+        "id": "ext-30",
+        "title": "[Platform] Bug #198957: Performance framework average and standard deviation computation is wrong when several com",
+        "description": "Performance framework average and standard deviation computation is wrong when several commits are done for a same scenario",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Incorrect metric calculation in the performance framework under specific multi-commit conditions represents a functional reporting defect."
+      },
+      {
+        "id": "ext-31",
+        "title": "[Platform] Bug #335496: [Help] In Help View too much vertical white space between Scope and Alternate Search Expre",
+        "description": "[Help] In Help View too much vertical white space between Scope and Alternate Search Expression",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.95,
+        "reason": "It is a minor cosmetic layout issue involving excessive whitespace with no impact on functionality."
+      },
+      {
+        "id": "ext-32",
+        "title": "[Core] Bug #462441: Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+        "description": "Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.95,
+        "reason": "Minor visual rendering glitch on a pre-release build with no functional impact."
+      },
+      {
+        "id": "ext-33",
+        "title": "[Firefox] Bug #818436: [toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+        "description": "[toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "This is a functional logic defect where an invalid UI docking operation is permitted on specific target environments."
+      },
+      {
+        "id": "ext-34",
+        "title": "[Core] Bug #772679: subpixel shifting causes visible shift of some lines on second scroll operation to hit bot",
+        "description": "subpixel shifting causes visible shift of some lines on second scroll operation to hit bottom of page",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "This is a minor visual rendering glitch during scrolling that has no impact on core functionality."
+      },
+      {
+        "id": "ext-35",
+        "title": "[Core] Bug #621363: SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+        "description": "SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "It represents an asynchronous timing defect in a test framework API that can be worked around by awaiting the next event loop tick."
+      },
+      {
+        "id": "ext-36",
+        "title": "[Core] Bug #603919: changed event should be changed even if we can't store the last used directory (for <input",
+        "description": "changed event should be changed even if we can't store the last used directory (for <input type='file'>)",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Failing to dispatch the change event when directory persistence fails is a functional defect occurring under specific storage restriction scenarios."
+      },
+      {
+        "id": "ext-37",
+        "title": "[Core] Bug #474157: Not always checking for plugin exception set with NPN_SetException after invoking an NPCla",
+        "description": "Not always checking for plugin exception set with NPN_SetException after invoking an NPClass callback on an NPObject",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Failing to check for set plugin exceptions is a functional defect that can lead to improper error handling in edge cases."
+      },
+      {
+        "id": "ext-38",
+        "title": "[Core] Bug #599289: default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+        "description": "default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.92,
+        "reason": "Updating outdated default fonts is a minor visual improvement with no impact on application functionality."
+      },
+      {
+        "id": "ext-39",
+        "title": "[Firefox] Bug #523057: dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in ",
+        "description": "dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in the URL bar twice",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Duplicating the URL in the address bar during drag-and-drop is a minor usability defect with easy workarounds like copy-pasting the link."
+      },
+      {
+        "id": "ext-40",
+        "title": "[CDT] Bug #297387: [DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC addre",
+        "description": "[DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC address",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Unexpected shortcut execution while a text box is focused causes minor navigation disruptions but does not block overall usage."
+      },
+      {
+        "id": "ext-41",
+        "title": "[CDT] Bug #203959: DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+        "description": "DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "The issue is a minor textual inconsistency between the Table of Contents link and the target page title with no impact on functionality."
+      },
+      {
+        "id": "ext-42",
+        "title": "[Firefox] Bug #437856: Autocomplete only uses partial search string if 'tab' is pressed too quickly after enterin",
+        "description": "Autocomplete only uses partial search string if 'tab' is pressed too quickly after entering the search string.",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "Functional defect caused by a timing edge case during rapid user input, which can be avoided with a simple workaround."
+      },
+      {
+        "id": "ext-43",
+        "title": "[CDT] Bug #255952: \"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the names",
+        "description": "\"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the namespace",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.88,
+        "reason": "The automated code action generates redundant or misplaced code directives, requiring manual cleanup by the developer without completely blocking the workflow."
+      },
+      {
+        "id": "ext-44",
+        "title": "[Firefox] Bug #625920: Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+        "description": "Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.95,
+        "reason": "This is a minor visual rendering glitch involving font clipping with no impact on functionality."
+      },
+      {
+        "id": "ext-45",
+        "title": "[Firefox] Bug #562452: Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+        "description": "Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.95,
+        "reason": "This is a minor visual glitch regarding a focus ring that has no impact on functionality."
+      },
+      {
+        "id": "ext-46",
+        "title": "[Firefox] Bug #394085: The star button is touching the right border of the location bar drop down button",
+        "description": "The star button is touching the right border of the location bar drop down button",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.95,
+        "reason": "This is a minor cosmetic layout issue with no impact on functionality."
+      },
+      {
+        "id": "ext-47",
+        "title": "[Bugzilla] Bug #519676: You cannot set parameters to empty values with an \"answers\" file when creating an installa",
+        "description": "You cannot set parameters to empty values with an \"answers\" file when creating an installation",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.85,
+        "reason": "Functional defect preventing empty parameter configuration during installation via answers files, though workaround mechanisms typically exist."
+      },
+      {
+        "id": "ext-48",
+        "title": "[Platform] Bug #297762: [Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view ",
+        "description": "[Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view is opened.",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Failure to auto-expand breakpoint groups on initial view is a minor usability inconvenience easily resolved by manually expanding them."
+      }
+    ]
+  },
+  "openai": {
+    "diagnostic": {
+      "total": 18,
+      "exactAccuracy": 83.33333333333334,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 5,
+          "High": 0,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 4,
+          "Medium": 0,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 2,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 5,
+          "fp": 1,
+          "fn": 0,
+          "precision": 83.33333333333334,
+          "recall": 100,
+          "f1": 90.9090909090909
+        },
+        "High": {
+          "tp": 4,
+          "fp": 1,
+          "fn": 1,
+          "precision": 80,
+          "recall": 80,
+          "f1": 80
+        },
+        "Medium": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 100,
+          "recall": 50,
+          "f1": 66.66666666666667
+        },
+        "Low": {
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "precision": 80,
+          "recall": 100,
+          "f1": 88.88888888888889
+        }
+      }
+    },
+    "external": {
+      "total": 48,
+      "exactAccuracy": 31.25,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 0,
+          "High": 10,
+          "Medium": 1,
+          "Low": 1
+        },
+        "High": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 9,
+          "Low": 2
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 7,
+          "Low": 4
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 5,
+          "Low": 7
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 12,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "High": {
+          "tp": 1,
+          "fp": 11,
+          "fn": 11,
+          "precision": 8.333333333333332,
+          "recall": 8.333333333333332,
+          "f1": 8.333333333333332
+        },
+        "Medium": {
+          "tp": 7,
+          "fp": 15,
+          "fn": 5,
+          "precision": 31.818181818181817,
+          "recall": 58.333333333333336,
+          "f1": 41.17647058823529
+        },
+        "Low": {
+          "tp": 7,
+          "fp": 7,
+          "fn": 5,
+          "precision": 50,
+          "recall": 58.333333333333336,
+          "f1": 53.84615384615385
+        }
+      }
+    },
+    "records": [
+      {
+        "id": "diag-1",
+        "title": "Application crashes and all unsaved data is lost when clicking Save",
+        "description": "Clicking the save button causes an immediate crash; nothing is persisted and the session must be restarted",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.97,
+        "reason": "Total application crash resulting in loss of all unsaved user data."
+      },
+      {
+        "id": "diag-2",
+        "title": "SQL injection vulnerability in login form",
+        "description": "The login form does not sanitize input, allowing crafted queries to access unauthorized database records",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.99,
+        "reason": "Severe security vulnerability that could lead to unauthorized access and data breaches."
+      },
+      {
+        "id": "diag-3",
+        "title": "Payment processing charges customers twice for a single transaction",
+        "description": "Users report duplicate charges appearing on their card statement after a single checkout",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.97,
+        "reason": "Duplicate charges can lead to significant financial loss for customers and damage trust in the payment system."
+      },
+      {
+        "id": "diag-4",
+        "title": "Server crashes completely when more than 50 users log in simultaneously",
+        "description": "Load testing shows a full server crash and downtime once concurrent logins exceed 50",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.97,
+        "reason": "Total service outage occurs under expected user load, severely impacting availability."
+      },
+      {
+        "id": "diag-5",
+        "title": "Clicking save button crashes the app and wipes unsaved changes",
+        "description": "Same crash-on-save behavior as reported elsewhere; all in-progress edits are lost",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.97,
+        "reason": "App crash on save leads to total loss of unsaved user data, severely impacting user experience."
+      },
+      {
+        "id": "diag-6",
+        "title": "Checkout page freezes when applying a discount code",
+        "description": "Clicking \"Apply Promo Code\" causes a 500 error and the browser tab becomes unresponsive",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "The checkout process is severely impacted, preventing users from completing purchases."
+      },
+      {
+        "id": "diag-7",
+        "title": "User passwords visible in plain text in browser network requests",
+        "description": "Inspecting network traffic during login shows the password field unencrypted in the request payload",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.99,
+        "reason": "Severe security vulnerability exposing user passwords, risking data breaches and user trust."
+      },
+      {
+        "id": "diag-8",
+        "title": "File upload fails for all files larger than 10MB with no error message",
+        "description": "Large uploads silently fail; the UI shows a spinner indefinitely with no feedback to the user",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Major functionality is broken for users attempting to upload larger files, with no error message or workaround available."
+      },
+      {
+        "id": "diag-9",
+        "title": "Search results return incorrect data for about 30% of queries",
+        "description": "A sample of 20 test queries showed 6 returning results unrelated to the search term",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Significant functionality issue affecting the accuracy of search results, which is critical for user satisfaction and engagement."
+      },
+      {
+        "id": "diag-10",
+        "title": "Discount code entry causes checkout to hang and become unresponsive",
+        "description": "Applying a promo code at checkout freezes the page, matching other reports of checkout instability",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "The checkout process is severely impacted, preventing users from completing purchases."
+      },
+      {
+        "id": "diag-11",
+        "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+        "description": "Upload works but is unusually slow under normal network conditions, no data loss",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect with a noticeable performance issue, but no data loss and no complete failure."
+      },
+      {
+        "id": "diag-12",
+        "title": "Email notifications delayed by several hours during peak usage",
+        "description": "Notification emails are eventually delivered but with a multi-hour lag during high-traffic periods",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Significant delay in critical communication affecting user engagement and timely responses."
+      },
+      {
+        "id": "diag-13",
+        "title": "Dashboard chart labels overlap on tablet-sized screens",
+        "description": "Chart legends visually overlap between 768px-1024px viewport widths; desktop and mobile are unaffected",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual issue affecting only specific screen sizes with no functional impact."
+      },
+      {
+        "id": "diag-14",
+        "title": "Export to CSV produces a file with incorrect column headers",
+        "description": "The exported file has data in the right order but header row labels are shifted by one column",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in data export with a workaround available by manually adjusting headers."
+      },
+      {
+        "id": "diag-15",
+        "title": "Submit button color doesn't match the rest of the UI theme",
+        "description": "Minor visual inconsistency; button is functional, just the wrong shade of blue",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual inconsistency with no impact on functionality or user experience."
+      },
+      {
+        "id": "diag-16",
+        "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+        "description": "Cosmetic spelling error in static text, no functional impact",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.97,
+        "reason": "Minor visual typo with no impact on functionality or user experience."
+      },
+      {
+        "id": "diag-17",
+        "title": "Tooltip text is slightly misaligned on hover for the help icon",
+        "description": "Tooltip appears a few pixels off from the icon it's attached to",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual misalignment of tooltip with no impact on functionality."
+      },
+      {
+        "id": "diag-18",
+        "title": "Footer copyright year shows last year instead of current year",
+        "description": "Static text bug, purely cosmetic, no functional impact",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.97,
+        "reason": "Minor visual glitch with no impact on functionality or user experience."
+      },
+      {
+        "id": "ext-1",
+        "title": "[Core] Bug #379612: arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+        "description": "arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual issue affecting the user interface without impacting functionality."
+      },
+      {
+        "id": "ext-2",
+        "title": "[Bugzilla] Bug #532493: [SECURITY] Restricting a bug to a group while moving it to another product has no effect i",
+        "description": "[SECURITY] Restricting a bug to a group while moving it to another product has no effect if the group is not used by both products",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Security-related issue that could lead to unauthorized access or visibility of sensitive information across products."
+      },
+      {
+        "id": "ext-3",
+        "title": "[Core] Bug #580187: TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq'",
+        "description": "TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq' is 'immd' which has type float64 (expected int64): 0\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Assertion failure indicates a major issue that could lead to crashes or severe performance degradation in the application."
+      },
+      {
+        "id": "ext-4",
+        "title": "[Core] Bug #557060: [Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABV",
+        "description": "[Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABVexception@stdext@@@Z entry point not found in MSVCP80D.dll\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Application fails to start due to a critical dependency issue, preventing user access."
+      },
+      {
+        "id": "ext-5",
+        "title": "[Core] Bug #508456: [HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+        "description": "[HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Severe performance degradation causing the application to become unresponsive when handling large data sets."
+      },
+      {
+        "id": "ext-6",
+        "title": "[Core] Bug #399843: \"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, ov",
+        "description": "\"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, overflowing height",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "The assertion failure leads to a crash, indicating a major functional issue that disrupts user experience."
+      },
+      {
+        "id": "ext-7",
+        "title": "[Core] Bug #373589: Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has bee",
+        "description": "Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has been removed from the document",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "The crash indicates a major functionality failure that could disrupt user experience significantly."
+      },
+      {
+        "id": "ext-8",
+        "title": "[Platform] Bug #132020: I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Sim",
+        "description": "I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Simultaneous Release",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Inability to access help documentation significantly hinders user experience and support."
+      },
+      {
+        "id": "ext-9",
+        "title": "[Core] Bug #330367: Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set",
+        "description": "Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set at the same time while checking other data.",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Frequent crashes in a major browser version disrupt user experience significantly."
+      },
+      {
+        "id": "ext-10",
+        "title": "[Platform] Bug #323763: Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+        "description": "Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "The application crashes on startup, preventing users from accessing the software entirely."
+      },
+      {
+        "id": "ext-11",
+        "title": "[Core] Bug #767775: Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!!",
+        "description": "Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!! ABORT: __delete__()d actor: file e:/builds/moz2_slave/rel-m-rel-w32-bld/build/obj-firefox/ipc/ipdl/PPluginInstance.cpp, line 28\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Frequent crashes in the Firefox browser indicate a major stability issue affecting user experience."
+      },
+      {
+        "id": "ext-12",
+        "title": "[Bugzilla] Bug #652427: Going back to the new bug page looses the description if possible duplicates have been sea",
+        "description": "Going back to the new bug page looses the description if possible duplicates have been searched for",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect that affects user experience but can be worked around by re-entering the description."
+      },
+      {
+        "id": "ext-13",
+        "title": "[Bugzilla] Bug #465606: If a user doesn't have access to change target milestone, it gets set back to default.",
+        "description": "If a user doesn't have access to change target milestone, it gets set back to default.",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect that may confuse users, but it has a workaround by manually setting the milestone after defaulting."
+      },
+      {
+        "id": "ext-14",
+        "title": "[Core] Bug #328128: nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user ",
+        "description": "nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user set value if it is set to its default value",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Documentation improvement request with no impact on functionality or user experience."
+      },
+      {
+        "id": "ext-15",
+        "title": "[Core] Bug #504450: Have to set explicit focus to a page by clicking on it, after clicking Back",
+        "description": "Have to set explicit focus to a page by clicking on it, after clicking Back",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect requiring user interaction to regain focus, but a workaround exists."
+      },
+      {
+        "id": "ext-16",
+        "title": "[Core] Bug #526446: AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h",
+        "description": "AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h\", line 427.5: 1540-0130 (S) \"AP\" is not declared",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Compilation error prevents building the software, impacting development and deployment."
+      },
+      {
+        "id": "ext-17",
+        "title": "[JDT] Bug #243346: Package shows twice if name is part of another package name in Project  Explorer view",
+        "description": "Package shows twice if name is part of another package name in Project  Explorer view",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual duplication issue in the Project Explorer that does not affect functionality."
+      },
+      {
+        "id": "ext-18",
+        "title": "[Thunderbird] Bug #403907: Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the sa",
+        "description": "Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the same account (even trash) take a lot of cpu and one to two minutes of processing",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Performance degradation during folder operations, but users can still complete the task with some delay."
+      },
+      {
+        "id": "ext-19",
+        "title": "[Bugzilla] Bug #452734: Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+        "description": "Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in keyword entry with a likely workaround through alternative methods."
+      },
+      {
+        "id": "ext-20",
+        "title": "[Platform] Bug #225404: Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event ",
+        "description": "Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event for tree on vista",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect affecting user interaction with a workaround likely available by clicking directly on the cell editors."
+      },
+      {
+        "id": "ext-21",
+        "title": "[Core] Bug #453801: Deferred (defer) external javascript fails to launch window.onload() if external CSS has b",
+        "description": "Deferred (defer) external javascript fails to launch window.onload() if external CSS has been loaded after the deferred script",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in script execution order with a potential workaround by adjusting script loading sequence."
+      },
+      {
+        "id": "ext-22",
+        "title": "[Platform] Bug #196328: Table viewer placed inside  a wizard does not expand vertically when size of the wizard ex",
+        "description": "Table viewer placed inside  a wizard does not expand vertically when size of the wizard expands",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in UI layout that affects usability but has no critical impact on core functionality."
+      },
+      {
+        "id": "ext-23",
+        "title": "[Firefox] Bug #430948: Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Boo",
+        "description": "Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Bookmarks does not work.",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in a feature with a workaround available through manual bookmarking."
+      },
+      {
+        "id": "ext-24",
+        "title": "[Core] Bug #495558: Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+        "description": "Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect related to audio playback with a specific video format, but likely has a workaround or alternative methods to play audio."
+      },
+      {
+        "id": "ext-25",
+        "title": "[Core] Bug #783525: B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+        "description": "B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "The request pertains to a policy change for error reporting, which does not impact functionality or user experience significantly."
+      },
+      {
+        "id": "ext-26",
+        "title": "[Firefox] Bug #580892: Checking 'clear history when minefield closes' is not clearing cache on shutdown but on st",
+        "description": "Checking 'clear history when minefield closes' is not clearing cache on shutdown but on startup",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect with a workaround available by manually clearing cache before shutdown."
+      },
+      {
+        "id": "ext-27",
+        "title": "[Core] Bug #626741: At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION",
+        "description": "At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION: attempt to modify an immutable nsStandardURL: 'Error', file nsStandardURL.cpp, line 1164\"",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect related to a specific configuration with a workaround available by disabling NoScript."
+      },
+      {
+        "id": "ext-28",
+        "title": "[Thunderbird] Bug #365329: string to date conversion returns wrong value for dates in february when run after 28th of",
+        "description": "string to date conversion returns wrong value for dates in february when run after 28th of each month",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.9,
+        "reason": "Incorrect date conversion can lead to significant functional issues, especially for applications relying on accurate date handling."
+      },
+      {
+        "id": "ext-29",
+        "title": "[Bugzilla] Bug #376911: Setting charset in http headers from Bugzilla::CGI object charset property doesn't work wi",
+        "description": "Setting charset in http headers from Bugzilla::CGI object charset property doesn't work with content-types others as text subtype",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in setting charset for specific content types, but does not prevent overall application functionality."
+      },
+      {
+        "id": "ext-30",
+        "title": "[Platform] Bug #198957: Performance framework average and standard deviation computation is wrong when several com",
+        "description": "Performance framework average and standard deviation computation is wrong when several commits are done for a same scenario",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in performance metrics calculation that may affect analysis but has a potential workaround."
+      },
+      {
+        "id": "ext-31",
+        "title": "[Platform] Bug #335496: [Help] In Help View too much vertical white space between Scope and Alternate Search Expre",
+        "description": "[Help] In Help View too much vertical white space between Scope and Alternate Search Expression",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual layout issue with no impact on functionality."
+      },
+      {
+        "id": "ext-32",
+        "title": "[Core] Bug #462441: Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+        "description": "Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual issue in a specific browser version with no impact on functionality."
+      },
+      {
+        "id": "ext-33",
+        "title": "[Firefox] Bug #818436: [toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+        "description": "[toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in the docking feature with a potential workaround by avoiding docking in specified scenarios."
+      },
+      {
+        "id": "ext-34",
+        "title": "[Core] Bug #772679: subpixel shifting causes visible shift of some lines on second scroll operation to hit bot",
+        "description": "subpixel shifting causes visible shift of some lines on second scroll operation to hit bottom of page",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual issue affecting the appearance of the page without impacting functionality."
+      },
+      {
+        "id": "ext-35",
+        "title": "[Core] Bug #621363: SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+        "description": "SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in IPC setter with a potential workaround by waiting for the next event loop."
+      },
+      {
+        "id": "ext-36",
+        "title": "[Core] Bug #603919: changed event should be changed even if we can't store the last used directory (for <input",
+        "description": "changed event should be changed even if we can't store the last used directory (for <input type='file'>)",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in file input handling with a potential workaround for users."
+      },
+      {
+        "id": "ext-37",
+        "title": "[Core] Bug #474157: Not always checking for plugin exception set with NPN_SetException after invoking an NPCla",
+        "description": "Not always checking for plugin exception set with NPN_SetException after invoking an NPClass callback on an NPObject",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect related to exception handling in plugin callbacks, but lacks a clear impact on core functionality."
+      },
+      {
+        "id": "ext-38",
+        "title": "[Core] Bug #599289: default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+        "description": "default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Outdated font usage is a minor visual issue with no impact on functionality."
+      },
+      {
+        "id": "ext-39",
+        "title": "[Firefox] Bug #523057: dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in ",
+        "description": "dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in the URL bar twice",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual issue with URL display that does not affect functionality."
+      },
+      {
+        "id": "ext-40",
+        "title": "[CDT] Bug #297387: [DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC addre",
+        "description": "[DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC address",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in keyboard navigation with a workaround available by using other keys."
+      },
+      {
+        "id": "ext-41",
+        "title": "[CDT] Bug #203959: DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+        "description": "DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual inconsistency between navigation link and topic title with no impact on functionality."
+      },
+      {
+        "id": "ext-42",
+        "title": "[Firefox] Bug #437856: Autocomplete only uses partial search string if 'tab' is pressed too quickly after enterin",
+        "description": "Autocomplete only uses partial search string if 'tab' is pressed too quickly after entering the search string.",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect in autocomplete feature with a potential user workaround by adjusting input timing."
+      },
+      {
+        "id": "ext-43",
+        "title": "[CDT] Bug #255952: \"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the names",
+        "description": "\"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the namespace",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional defect related to code generation with a workaround available by manually adjusting the output."
+      },
+      {
+        "id": "ext-44",
+        "title": "[Firefox] Bug #625920: Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+        "description": "Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual issue affecting text display with no impact on functionality."
+      },
+      {
+        "id": "ext-45",
+        "title": "[Firefox] Bug #562452: Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+        "description": "Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual issue related to focus indication with no impact on functionality."
+      },
+      {
+        "id": "ext-46",
+        "title": "[Firefox] Bug #394085: The star button is touching the right border of the location bar drop down button",
+        "description": "The star button is touching the right border of the location bar drop down button",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor visual layout issue with no impact on functionality."
+      },
+      {
+        "id": "ext-47",
+        "title": "[Bugzilla] Bug #519676: You cannot set parameters to empty values with an \"answers\" file when creating an installa",
+        "description": "You cannot set parameters to empty values with an \"answers\" file when creating an installation",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.8,
+        "reason": "Functional limitation in parameter setting with a workaround likely available through alternative methods."
+      },
+      {
+        "id": "ext-48",
+        "title": "[Platform] Bug #297762: [Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view ",
+        "description": "[Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view is opened.",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.9,
+        "reason": "Minor usability inconvenience with no impact on core functionality."
+      }
+    ]
+  },
+  "anthropic": {
+    "diagnostic": {
+      "total": 18,
+      "exactAccuracy": 83.33333333333334,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 5,
+          "High": 0,
+          "Medium": 0,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 1,
+          "High": 4,
+          "Medium": 0,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 2,
+          "Low": 1
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 0,
+          "Low": 4
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 5,
+          "fp": 1,
+          "fn": 0,
+          "precision": 83.33333333333334,
+          "recall": 100,
+          "f1": 90.9090909090909
+        },
+        "High": {
+          "tp": 4,
+          "fp": 1,
+          "fn": 1,
+          "precision": 80,
+          "recall": 80,
+          "f1": 80
+        },
+        "Medium": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 100,
+          "recall": 50,
+          "f1": 66.66666666666667
+        },
+        "Low": {
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "precision": 80,
+          "recall": 100,
+          "f1": 88.88888888888889
+        }
+      }
+    },
+    "external": {
+      "total": 48,
+      "exactAccuracy": 47.91666666666667,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 3,
+          "High": 7,
+          "Medium": 2,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 0,
+          "High": 5,
+          "Medium": 6,
+          "Low": 1
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 2,
+          "Medium": 7,
+          "Low": 3
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 1,
+          "Medium": 3,
+          "Low": 8
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 9,
+          "precision": 100,
+          "recall": 25,
+          "f1": 40
+        },
+        "High": {
+          "tp": 5,
+          "fp": 10,
+          "fn": 7,
+          "precision": 33.33333333333333,
+          "recall": 41.66666666666667,
+          "f1": 37.03703703703704
+        },
+        "Medium": {
+          "tp": 7,
+          "fp": 11,
+          "fn": 5,
+          "precision": 38.88888888888889,
+          "recall": 58.333333333333336,
+          "f1": 46.666666666666664
+        },
+        "Low": {
+          "tp": 8,
+          "fp": 4,
+          "fn": 4,
+          "precision": 66.66666666666666,
+          "recall": 66.66666666666666,
+          "f1": 66.66666666666666
+        }
+      }
+    },
+    "records": [
+      {
+        "id": "diag-1",
+        "title": "Application crashes and all unsaved data is lost when clicking Save",
+        "description": "Clicking the save button causes an immediate crash; nothing is persisted and the session must be restarted",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.96,
+        "reason": "Core save functionality is completely broken, causing data loss and forcing users to restart sessions with no workaround."
+      },
+      {
+        "id": "diag-2",
+        "title": "SQL injection vulnerability in login form",
+        "description": "The login form does not sanitize input, allowing crafted queries to access unauthorized database records",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.99,
+        "reason": "SQL injection vulnerability in authentication layer enables unauthorized database access and potential complete system compromise."
+      },
+      {
+        "id": "diag-3",
+        "title": "Payment processing charges customers twice for a single transaction",
+        "description": "Users report duplicate charges appearing on their card statement after a single checkout",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.99,
+        "reason": "Double-charging customers causes direct financial loss and represents a critical payment system failure requiring immediate remediation."
+      },
+      {
+        "id": "diag-4",
+        "title": "Server crashes completely when more than 50 users log in simultaneously",
+        "description": "Load testing shows a full server crash and downtime once concurrent logins exceed 50",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.96,
+        "reason": "Complete service outage triggered at relatively low concurrent user threshold, causing total unavailability and potential data loss during crash."
+      },
+      {
+        "id": "diag-5",
+        "title": "Clicking save button crashes the app and wipes unsaved changes",
+        "description": "Same crash-on-save behavior as reported elsewhere; all in-progress edits are lost",
+        "expectedSeverity": "Critical",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.96,
+        "reason": "Core save functionality causes app crash with complete loss of user work, making the application unusable for its primary purpose."
+      },
+      {
+        "id": "diag-6",
+        "title": "Checkout page freezes when applying a discount code",
+        "description": "Clicking \"Apply Promo Code\" causes a 500 error and the browser tab becomes unresponsive",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.93,
+        "reason": "Critical checkout functionality is completely blocked, preventing customers from completing purchases with promo codes."
+      },
+      {
+        "id": "diag-7",
+        "title": "User passwords visible in plain text in browser network requests",
+        "description": "Inspecting network traffic during login shows the password field unencrypted in the request payload",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "Critical",
+        "confidence": 0.99,
+        "reason": "Passwords transmitted in plain text over network is a critical security vulnerability exposing all user credentials to interception and compromise."
+      },
+      {
+        "id": "diag-8",
+        "title": "File upload fails for all files larger than 10MB with no error message",
+        "description": "Large uploads silently fail; the UI shows a spinner indefinitely with no feedback to the user",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.89,
+        "reason": "Core file upload functionality is completely broken for a common use case (files >10MB) with no user feedback, blocking a primary feature with no workaround."
+      },
+      {
+        "id": "diag-9",
+        "title": "Search results return incorrect data for about 30% of queries",
+        "description": "A sample of 20 test queries showed 6 returning results unrelated to the search term",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Core search functionality is significantly broken with a 30% failure rate, severely impacting user experience and trust with no documented workaround."
+      },
+      {
+        "id": "diag-10",
+        "title": "Discount code entry causes checkout to hang and become unresponsive",
+        "description": "Applying a promo code at checkout freezes the page, matching other reports of checkout instability",
+        "expectedSeverity": "High",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.89,
+        "reason": "Core checkout functionality is completely blocked when users attempt to apply discount codes, directly preventing transaction completion."
+      },
+      {
+        "id": "diag-11",
+        "title": "Profile picture upload sometimes takes over 30 seconds to complete",
+        "description": "Upload works but is unusually slow under normal network conditions, no data loss",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Non-critical feature with significant performance degradation but functional workaround of waiting for completion."
+      },
+      {
+        "id": "diag-12",
+        "title": "Email notifications delayed by several hours during peak usage",
+        "description": "Notification emails are eventually delivered but with a multi-hour lag during high-traffic periods",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "High",
+        "confidence": 0.87,
+        "reason": "Critical communication pathway is severely degraded during peak usage, causing time-sensitive notifications to lose business value and user trust."
+      },
+      {
+        "id": "diag-13",
+        "title": "Dashboard chart labels overlap on tablet-sized screens",
+        "description": "Chart legends visually overlap between 768px-1024px viewport widths; desktop and mobile are unaffected",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Cosmetic rendering issue affecting a specific viewport range with no functional impact on data or usability."
+      },
+      {
+        "id": "diag-14",
+        "title": "Export to CSV produces a file with incorrect column headers",
+        "description": "The exported file has data in the right order but header row labels are shifted by one column",
+        "expectedSeverity": "Medium",
+        "dataset": "diagnostic",
+        "actualSeverity": "Medium",
+        "confidence": 0.82,
+        "reason": "Data integrity issue that corrupts exported files and causes misalignment between headers and values, but users can manually correct headers or use alternative export formats as a workaround."
+      },
+      {
+        "id": "diag-15",
+        "title": "Submit button color doesn't match the rest of the UI theme",
+        "description": "Minor visual inconsistency; button is functional, just the wrong shade of blue",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.96,
+        "reason": "Cosmetic color mismatch with no impact on functionality or user workflow."
+      },
+      {
+        "id": "diag-16",
+        "title": "Typo in the settings page: \"Recieve\" should be \"Receive\"",
+        "description": "Cosmetic spelling error in static text, no functional impact",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.98,
+        "reason": "Cosmetic spelling error in static text with zero functional or user experience impact."
+      },
+      {
+        "id": "diag-17",
+        "title": "Tooltip text is slightly misaligned on hover for the help icon",
+        "description": "Tooltip appears a few pixels off from the icon it's attached to",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.92,
+        "reason": "Minor visual misalignment with no impact on functionality or user workflow."
+      },
+      {
+        "id": "diag-18",
+        "title": "Footer copyright year shows last year instead of current year",
+        "description": "Static text bug, purely cosmetic, no functional impact",
+        "expectedSeverity": "Low",
+        "dataset": "diagnostic",
+        "actualSeverity": "Low",
+        "confidence": 0.98,
+        "reason": "Static copyright year display is a cosmetic issue with zero functional impact on application behavior or user experience."
+      },
+      {
+        "id": "ext-1",
+        "title": "[Core] Bug #379612: arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+        "description": "arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.87,
+        "reason": "Core UI navigation feature (tree expansion controls) is completely non-functional on a major platform, blocking user interaction with hierarchical data structures."
+      },
+      {
+        "id": "ext-2",
+        "title": "[Bugzilla] Bug #532493: [SECURITY] Restricting a bug to a group while moving it to another product has no effect i",
+        "description": "[SECURITY] Restricting a bug to a group while moving it to another product has no effect if the group is not used by both products",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Security restriction bypass allows unauthorized access to sensitive bug information when moving issues between products with different group configurations."
+      },
+      {
+        "id": "ext-3",
+        "title": "[Core] Bug #580187: TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq'",
+        "description": "TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq' is 'immd' which has type float64 (expected int64): 0\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Critical",
+        "confidence": 0.89,
+        "reason": "Assertion failure in core JIT compiler pipeline indicates a type system violation that will cause runtime crashes during code generation on 64-bit systems."
+      },
+      {
+        "id": "ext-4",
+        "title": "[Core] Bug #557060: [Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABV",
+        "description": "[Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABVexception@stdext@@@Z entry point not found in MSVCP80D.dll\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Critical",
+        "confidence": 0.93,
+        "reason": "Application fails to start entirely due to missing runtime library dependency, rendering the software completely unusable."
+      },
+      {
+        "id": "ext-5",
+        "title": "[Core] Bug #508456: [HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+        "description": "[HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Browser becomes unresponsive when rendering pages with large table structures, blocking user access to affected content with no workaround."
+      },
+      {
+        "id": "ext-6",
+        "title": "[Core] Bug #399843: \"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, ov",
+        "description": "\"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, overflowing height",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Browser crash with assertion failure in layout engine when using CSS columns with overflow is a critical rendering bug affecting core functionality."
+      },
+      {
+        "id": "ext-7",
+        "title": "[Core] Bug #373589: Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has bee",
+        "description": "Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has been removed from the document",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Browser crash when accessing link color on removed DOM elements represents a critical stability issue affecting core rendering functionality."
+      },
+      {
+        "id": "ext-8",
+        "title": "[Platform] Bug #132020: I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Sim",
+        "description": "I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Simultaneous Release",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Help documentation access is blocked in a specific configuration, but core application functionality remains operational with workaround options available."
+      },
+      {
+        "id": "ext-9",
+        "title": "[Core] Bug #330367: Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set",
+        "description": "Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set at the same time while checking other data.",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Browser crash triggered by specific CSS/JavaScript interaction is a critical stability issue affecting user experience, though limited to Firefox 1.5 (legacy browser)."
+      },
+      {
+        "id": "ext-10",
+        "title": "[Platform] Bug #323763: Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+        "description": "Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Critical",
+        "confidence": 0.94,
+        "reason": "Application fails to start entirely, rendering the IDE completely unusable for all users."
+      },
+      {
+        "id": "ext-11",
+        "title": "[Core] Bug #767775: Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!!",
+        "description": "Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!! ABORT: __delete__()d actor: file e:/builds/moz2_slave/rel-m-rel-w32-bld/build/obj-firefox/ipc/ipdl/PPluginInstance.cpp, line 28\"",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Browser crash in plugin instance transition code indicates a critical stability issue affecting user experience, though it appears to be an edge case in plugin handling rather than total service outage."
+      },
+      {
+        "id": "ext-12",
+        "title": "[Bugzilla] Bug #652427: Going back to the new bug page looses the description if possible duplicates have been sea",
+        "description": "Going back to the new bug page looses the description if possible duplicates have been searched for",
+        "expectedSeverity": "Critical",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "User data loss during workflow with a clear workaround (copy description before searching), affecting bug reporting but not production systems."
+      },
+      {
+        "id": "ext-13",
+        "title": "[Bugzilla] Bug #465606: If a user doesn't have access to change target milestone, it gets set back to default.",
+        "description": "If a user doesn't have access to change target milestone, it gets set back to default.",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Data regression issue where milestone settings are unintentionally reset due to permission checks, affecting workflow accuracy but with potential workaround through permission escalation."
+      },
+      {
+        "id": "ext-14",
+        "title": "[Core] Bug #328128: nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user ",
+        "description": "nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user set value if it is set to its default value",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.92,
+        "reason": "This is a documentation request for an API method behavior that already functions correctly; it does not affect functionality or user experience."
+      },
+      {
+        "id": "ext-15",
+        "title": "[Core] Bug #504450: Have to set explicit focus to a page by clicking on it, after clicking Back",
+        "description": "Have to set explicit focus to a page by clicking on it, after clicking Back",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.72,
+        "reason": "Navigation focus issue requires manual workaround but doesn't block core functionality or cause data loss."
+      },
+      {
+        "id": "ext-16",
+        "title": "[Core] Bug #526446: AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h",
+        "description": "AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h\", line 427.5: 1540-0130 (S) \"AP\" is not declared",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.87,
+        "reason": "Compilation failure on AIX platform prevents building Firefox entirely, blocking development and release for that architecture."
+      },
+      {
+        "id": "ext-17",
+        "title": "[JDT] Bug #243346: Package shows twice if name is part of another package name in Project  Explorer view",
+        "description": "Package shows twice if name is part of another package name in Project  Explorer view",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "UI display defect causing duplicate package entries in Project Explorer with no functional impact on core operations, but affecting user experience and navigation clarity."
+      },
+      {
+        "id": "ext-18",
+        "title": "[Thunderbird] Bug #403907: Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the sa",
+        "description": "Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the same account (even trash) take a lot of cpu and one to two minutes of processing",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.82,
+        "reason": "Core file management operation (drag-and-drop folder move) causes severe performance degradation with 1-2 minute delays, making the feature practically unusable."
+      },
+      {
+        "id": "ext-19",
+        "title": "[Bugzilla] Bug #452734: Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+        "description": "Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Core bug-tracking feature (keyword entry) is broken post-upgrade, but users can likely work around it through UI selection or alternative methods."
+      },
+      {
+        "id": "ext-20",
+        "title": "[Platform] Bug #225404: Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event ",
+        "description": "Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event for tree on vista",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Missing FocusIn event in specific UI interaction (tree cell editor) on Vista platform is a functional defect with potential workarounds, affecting event handling rather than core functionality."
+      },
+      {
+        "id": "ext-21",
+        "title": "[Core] Bug #453801: Deferred (defer) external javascript fails to launch window.onload() if external CSS has b",
+        "description": "Deferred (defer) external javascript fails to launch window.onload() if external CSS has been loaded after the deferred script",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.87,
+        "reason": "Core initialization logic fails when CSS loads after deferred scripts, breaking page functionality for affected users with no obvious workaround."
+      },
+      {
+        "id": "ext-22",
+        "title": "[Platform] Bug #196328: Table viewer placed inside  a wizard does not expand vertically when size of the wizard ex",
+        "description": "Table viewer placed inside  a wizard does not expand vertically when size of the wizard expands",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "UI layout defect where a table viewer fails to properly resize within a wizard component, limiting usability but likely having a workaround such as manual resizing or repositioning."
+      },
+      {
+        "id": "ext-23",
+        "title": "[Firefox] Bug #430948: Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Boo",
+        "description": "Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Bookmarks does not work.",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Core bookmark management functionality (drag & drop to organize bookmarks) is completely broken across multiple UI locations, preventing users from organizing their bookmarks."
+      },
+      {
+        "id": "ext-24",
+        "title": "[Core] Bug #495558: Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+        "description": "Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+        "expectedSeverity": "High",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.78,
+        "reason": "Core media playback feature (audio) is completely non-functional for OGG video on a specific platform, blocking testing and user experience."
+      },
+      {
+        "id": "ext-25",
+        "title": "[Core] Bug #783525: B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+        "description": "B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.72,
+        "reason": "Policy redefinition for SIM lock/PIN error handling is a functional improvement rather than a critical bug, affecting user experience but not causing service outage or data loss."
+      },
+      {
+        "id": "ext-26",
+        "title": "[Firefox] Bug #580892: Checking 'clear history when minefield closes' is not clearing cache on shutdown but on st",
+        "description": "Checking 'clear history when minefield closes' is not clearing cache on shutdown but on startup",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Cache clearing occurs at wrong lifecycle event (startup instead of shutdown), violating user privacy expectations but with a functional workaround of manual cache clearing."
+      },
+      {
+        "id": "ext-27",
+        "title": "[Core] Bug #626741: At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION",
+        "description": "At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION: attempt to modify an immutable nsStandardURL: 'Error', file nsStandardURL.cpp, line 1164\"",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.72,
+        "reason": "Browser assertion error in URL handling under specific security extension configuration, affecting only users with NoScript HTTPS enforcement and not impacting core application functionality."
+      },
+      {
+        "id": "ext-28",
+        "title": "[Thunderbird] Bug #365329: string to date conversion returns wrong value for dates in february when run after 28th of",
+        "description": "string to date conversion returns wrong value for dates in february when run after 28th of each month",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Core date conversion functionality produces incorrect results for a significant portion of the year, breaking data integrity for any February date operations."
+      },
+      {
+        "id": "ext-29",
+        "title": "[Bugzilla] Bug #376911: Setting charset in http headers from Bugzilla::CGI object charset property doesn't work wi",
+        "description": "Setting charset in http headers from Bugzilla::CGI object charset property doesn't work with content-types others as text subtype",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Character encoding headers fail for non-text content types, causing potential data display issues with a workaround of manually setting headers."
+      },
+      {
+        "id": "ext-30",
+        "title": "[Platform] Bug #198957: Performance framework average and standard deviation computation is wrong when several com",
+        "description": "Performance framework average and standard deviation computation is wrong when several commits are done for a same scenario",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.88,
+        "reason": "Incorrect statistical calculations in performance metrics directly undermine the reliability of performance analysis and decision-making for multiple commits."
+      },
+      {
+        "id": "ext-31",
+        "title": "[Platform] Bug #335496: [Help] In Help View too much vertical white space between Scope and Alternate Search Expre",
+        "description": "[Help] In Help View too much vertical white space between Scope and Alternate Search Expression",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.92,
+        "reason": "Cosmetic layout issue with excessive whitespace in help documentation that does not impact functionality or user ability to access information."
+      },
+      {
+        "id": "ext-32",
+        "title": "[Core] Bug #462441: Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+        "description": "Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.92,
+        "reason": "Cosmetic visual rendering issue in a beta browser version on a pre-release OS with no functional impact on core features."
+      },
+      {
+        "id": "ext-33",
+        "title": "[Firefox] Bug #818436: [toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+        "description": "[toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Toolbox docking with incompatible targets (Remote/Win) is a functional defect that allows invalid operations, but likely has a workaround or doesn't completely break core functionality."
+      },
+      {
+        "id": "ext-34",
+        "title": "[Core] Bug #772679: subpixel shifting causes visible shift of some lines on second scroll operation to hit bot",
+        "description": "subpixel shifting causes visible shift of some lines on second scroll operation to hit bottom of page",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.82,
+        "reason": "Visual rendering glitch affecting text alignment during scroll with no functional impact on core features or user workflows."
+      },
+      {
+        "id": "ext-35",
+        "title": "[Core] Bug #621363: SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+        "description": "SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.72,
+        "reason": "Asynchronous state synchronization delay in test infrastructure affecting timing-sensitive test scenarios, but with workaround via event loop yielding."
+      },
+      {
+        "id": "ext-36",
+        "title": "[Core] Bug #603919: changed event should be changed even if we can't store the last used directory (for <input",
+        "description": "changed event should be changed even if we can't store the last used directory (for <input type='file'>)",
+        "expectedSeverity": "Medium",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "File input change events may not fire reliably when directory persistence fails, affecting form functionality with a potential workaround of manual event handling."
+      },
+      {
+        "id": "ext-37",
+        "title": "[Core] Bug #474157: Not always checking for plugin exception set with NPN_SetException after invoking an NPCla",
+        "description": "Not always checking for plugin exception set with NPN_SetException after invoking an NPClass callback on an NPObject",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "High",
+        "confidence": 0.82,
+        "reason": "Unhandled plugin exceptions can cause unpredictable behavior, crashes, or security vulnerabilities in browser-plugin interactions when error states are silently ignored."
+      },
+      {
+        "id": "ext-38",
+        "title": "[Core] Bug #599289: default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+        "description": "default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Font update request for Traditional Chinese locales is a cosmetic enhancement with no functional impact on core features."
+      },
+      {
+        "id": "ext-39",
+        "title": "[Firefox] Bug #523057: dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in ",
+        "description": "dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in the URL bar twice",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Visual display anomaly with no functional impact; the link still navigates correctly despite the duplicate URL bar text."
+      },
+      {
+        "id": "ext-40",
+        "title": "[CDT] Bug #297387: [DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC addre",
+        "description": "[DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC address",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.82,
+        "reason": "Minor keyboard navigation issue in a disassembly tool where the Home key has unexpected behavior in a specific UI component, with likely workarounds available."
+      },
+      {
+        "id": "ext-41",
+        "title": "[CDT] Bug #203959: DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+        "description": "DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Documentation navigation label mismatch is a cosmetic inconsistency with no functional impact on core application features."
+      },
+      {
+        "id": "ext-42",
+        "title": "[Firefox] Bug #437856: Autocomplete only uses partial search string if 'tab' is pressed too quickly after enterin",
+        "description": "Autocomplete only uses partial search string if 'tab' is pressed too quickly after entering the search string.",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Autocomplete feature has a timing-dependent defect that produces incorrect results, but users can work around it by waiting or using alternative input methods."
+      },
+      {
+        "id": "ext-43",
+        "title": "[CDT] Bug #255952: \"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the names",
+        "description": "\"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the namespace",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Code generation produces redundant/incorrect namespace declarations when using the 'Add include' feature, causing code quality issues but not breaking functionality."
+      },
+      {
+        "id": "ext-44",
+        "title": "[Firefox] Bug #625920: Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+        "description": "Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Cosmetic text rendering issue in title tab with no functional impact on core features or user workflows."
+      },
+      {
+        "id": "ext-45",
+        "title": "[Firefox] Bug #562452: Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+        "description": "Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Visual focus ring display issue with no functional impact on core features or user workflows."
+      },
+      {
+        "id": "ext-46",
+        "title": "[Firefox] Bug #394085: The star button is touching the right border of the location bar drop down button",
+        "description": "The star button is touching the right border of the location bar drop down button",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.92,
+        "reason": "Minor cosmetic spacing issue in UI layout with no functional impact on features or user workflows."
+      },
+      {
+        "id": "ext-47",
+        "title": "[Bugzilla] Bug #519676: You cannot set parameters to empty values with an \"answers\" file when creating an installa",
+        "description": "You cannot set parameters to empty values with an \"answers\" file when creating an installation",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Medium",
+        "confidence": 0.78,
+        "reason": "Installation workflow has a functional defect preventing empty parameter values via answers file, but users can likely work around this through manual parameter entry or alternative configuration methods."
+      },
+      {
+        "id": "ext-48",
+        "title": "[Platform] Bug #297762: [Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view ",
+        "description": "[Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view is opened.",
+        "expectedSeverity": "Low",
+        "dataset": "external",
+        "actualSeverity": "Low",
+        "confidence": 0.88,
+        "reason": "Minor UI/UX inconvenience where users must manually expand breakpoint groups on first view, with no impact on debugging functionality or core features."
+      }
+    ]
+  }
+}

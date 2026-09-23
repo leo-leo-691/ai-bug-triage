@@ -1,0 +1,158 @@
+{
+  "baseline": {
+    "diagnostic": {
+      "total": 18,
+      "exactAccuracy": 61.111111111111114,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 3,
+          "High": 1,
+          "Medium": 1,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 0,
+          "High": 2,
+          "Medium": 3,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 4,
+          "Low": 0
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 2,
+          "Low": 2
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 2,
+          "precision": 100,
+          "recall": 60,
+          "f1": 75
+        },
+        "High": {
+          "tp": 2,
+          "fp": 1,
+          "fn": 3,
+          "precision": 66.66666666666666,
+          "recall": 40,
+          "f1": 49.99999999999999
+        },
+        "Medium": {
+          "tp": 4,
+          "fp": 6,
+          "fn": 0,
+          "precision": 40,
+          "recall": 100,
+          "f1": 57.142857142857146
+        },
+        "Low": {
+          "tp": 2,
+          "fp": 0,
+          "fn": 2,
+          "precision": 100,
+          "recall": 50,
+          "f1": 66.66666666666667
+        }
+      }
+    },
+    "external": {
+      "total": 48,
+      "exactAccuracy": 39.58333333333333,
+      "confusionMatrix": {
+        "Critical": {
+          "Critical": 6,
+          "High": 0,
+          "Medium": 6,
+          "Low": 0
+        },
+        "High": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 12,
+          "Low": 0
+        },
+        "Medium": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 12,
+          "Low": 0
+        },
+        "Low": {
+          "Critical": 0,
+          "High": 0,
+          "Medium": 11,
+          "Low": 1
+        }
+      },
+      "perClass": {
+        "Critical": {
+          "tp": 6,
+          "fp": 0,
+          "fn": 6,
+          "precision": 100,
+          "recall": 50,
+          "f1": 66.66666666666667
+        },
+        "High": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 12,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "Medium": {
+          "tp": 12,
+          "fp": 29,
+          "fn": 0,
+          "precision": 29.268292682926827,
+          "recall": 100,
+          "f1": 45.28301886792453
+        },
+        "Low": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 11,
+          "precision": 100,
+          "recall": 8.333333333333332,
+          "f1": 15.384615384615383
+        }
+      }
+    }
+  },
+  "llm_v1": {
+    "diagnostic": {
+      "accuracy": 88.89,
+      "criticalRecall": 100
+    },
+    "external": {
+      "accuracy": 35.42,
+      "criticalRecall": 8.33
+    }
+  },
+  "comparisonTable": [
+    {
+      "Method": "Rule-Based Baseline (heuristicClassification)",
+      "Diag Accuracy": "61.1%",
+      "Diag Critical Recall": "60.0%",
+      "Ext Accuracy": "39.6%",
+      "Ext Critical Recall": "50.0%"
+    },
+    {
+      "Method": "LLM (v1 Prompt - from existing logs)",
+      "Diag Accuracy": "88.9%",
+      "Diag Critical Recall": "100.0%",
+      "Ext Accuracy": "35.4%",
+      "Ext Critical Recall": "8.3%"
+    }
+  ]
+}

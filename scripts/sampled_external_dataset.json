@@ -1,0 +1,434 @@
+[
+  {
+    "sourceBugId": "379612",
+    "project": "Core",
+    "rawSeverity": "critical",
+    "title": "[Core] Bug #379612: arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+    "description": "arrows for expanding items in XUL tree views are missing on Mac OS X trunk",
+    "expectedSeverity": "Critical",
+    "id": 1
+  },
+  {
+    "sourceBugId": "532493",
+    "project": "Bugzilla",
+    "rawSeverity": "blocker",
+    "title": "[Bugzilla] Bug #532493: [SECURITY] Restricting a bug to a group while moving it to another product has no effect i",
+    "description": "[SECURITY] Restricting a bug to a group while moving it to another product has no effect if the group is not used by both products",
+    "expectedSeverity": "Critical",
+    "id": 2
+  },
+  {
+    "sourceBugId": "580187",
+    "project": "Core",
+    "rawSeverity": "critical",
+    "title": "[Core] Bug #580187: TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq'",
+    "description": "TM: (64-bit) \"Assertion failure: LIR type error (start of writer pipeline): arg 1 of 'orq' is 'immd' which has type float64 (expected int64): 0\"",
+    "expectedSeverity": "Critical",
+    "id": 3
+  },
+  {
+    "sourceBugId": "557060",
+    "project": "Core",
+    "rawSeverity": "blocker",
+    "title": "[Core] Bug #557060: [Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABV",
+    "description": "[Debug Windows SeaMonkey 2.1] Startup fails with Windows error dialog \"?_Throw@std@@YAXABVexception@stdext@@@Z entry point not found in MSVCP80D.dll\"",
+    "expectedSeverity": "Critical",
+    "id": 4
+  },
+  {
+    "sourceBugId": "508456",
+    "project": "Core",
+    "rawSeverity": "critical",
+    "title": "[Core] Bug #508456: [HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+    "description": "[HTML5] Minefield quits responding when loading a page with thousands of TR and TD tags",
+    "expectedSeverity": "Critical",
+    "id": 5
+  },
+  {
+    "sourceBugId": "399843",
+    "project": "Core",
+    "rawSeverity": "critical",
+    "title": "[Core] Bug #399843: \"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, ov",
+    "description": "\"ASSERTION: overflow containers out of order or bad parent\" and crash with -moz-column, overflowing height",
+    "expectedSeverity": "Critical",
+    "id": 6
+  },
+  {
+    "sourceBugId": "373589",
+    "project": "Core",
+    "rawSeverity": "critical",
+    "title": "[Core] Bug #373589: Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has bee",
+    "description": "Crash [@ nsPresContext::DefaultLinkColor] trying to get link color for <body> that has been removed from the document",
+    "expectedSeverity": "Critical",
+    "id": 7
+  },
+  {
+    "sourceBugId": "132020",
+    "project": "Platform",
+    "rawSeverity": "critical",
+    "title": "[Platform] Bug #132020: I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Sim",
+    "description": "I cannot open the Help window (Help->Help Contents) when I have installed the Callisto Simultaneous Release",
+    "expectedSeverity": "Critical",
+    "id": 8
+  },
+  {
+    "sourceBugId": "330367",
+    "project": "Core",
+    "rawSeverity": "critical",
+    "title": "[Core] Bug #330367: Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set",
+    "description": "Firefox 1.5 crashes for onblur focusing an \"overflow\" div that also gets \"diplay:none\" set at the same time while checking other data.",
+    "expectedSeverity": "Critical",
+    "id": 9
+  },
+  {
+    "sourceBugId": "323763",
+    "project": "Platform",
+    "rawSeverity": "critical",
+    "title": "[Platform] Bug #323763: Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+    "description": "Eclipse 3.7 M1 crashes as it is starting up - detected by Java Runtime Environment",
+    "expectedSeverity": "Critical",
+    "id": 10
+  },
+  {
+    "sourceBugId": "767775",
+    "project": "Core",
+    "rawSeverity": "critical",
+    "title": "[Core] Bug #767775: Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!!",
+    "description": "Firefox crash in mozilla::plugins::PPluginInstance::Transition with abort message: \"###!!! ABORT: __delete__()d actor: file e:/builds/moz2_slave/rel-m-rel-w32-bld/build/obj-firefox/ipc/ipdl/PPluginInstance.cpp, line 28\"",
+    "expectedSeverity": "Critical",
+    "id": 11
+  },
+  {
+    "sourceBugId": "652427",
+    "project": "Bugzilla",
+    "rawSeverity": "critical",
+    "title": "[Bugzilla] Bug #652427: Going back to the new bug page looses the description if possible duplicates have been sea",
+    "description": "Going back to the new bug page looses the description if possible duplicates have been searched for",
+    "expectedSeverity": "Critical",
+    "id": 12
+  },
+  {
+    "sourceBugId": "465606",
+    "project": "Bugzilla",
+    "rawSeverity": "major",
+    "title": "[Bugzilla] Bug #465606: If a user doesn't have access to change target milestone, it gets set back to default.",
+    "description": "If a user doesn't have access to change target milestone, it gets set back to default.",
+    "expectedSeverity": "High",
+    "id": 13
+  },
+  {
+    "sourceBugId": "328128",
+    "project": "Core",
+    "rawSeverity": "major",
+    "title": "[Core] Bug #328128: nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user ",
+    "description": "nsIPrefBranch::prefHasUserValue should document the fact that a pref no longer has a user set value if it is set to its default value",
+    "expectedSeverity": "High",
+    "id": 14
+  },
+  {
+    "sourceBugId": "504450",
+    "project": "Core",
+    "rawSeverity": "major",
+    "title": "[Core] Bug #504450: Have to set explicit focus to a page by clicking on it, after clicking Back",
+    "description": "Have to set explicit focus to a page by clicking on it, after clicking Back",
+    "expectedSeverity": "High",
+    "id": 15
+  },
+  {
+    "sourceBugId": "526446",
+    "project": "Core",
+    "rawSeverity": "major",
+    "title": "[Core] Bug #526446: AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h",
+    "description": "AIX Compilation error for 3.7a1pre source \"/home/firefox/mozilla-central/js/src/jsvector.h\", line 427.5: 1540-0130 (S) \"AP\" is not declared",
+    "expectedSeverity": "High",
+    "id": 16
+  },
+  {
+    "sourceBugId": "243346",
+    "project": "JDT",
+    "rawSeverity": "major",
+    "title": "[JDT] Bug #243346: Package shows twice if name is part of another package name in Project  Explorer view",
+    "description": "Package shows twice if name is part of another package name in Project  Explorer view",
+    "expectedSeverity": "High",
+    "id": 17
+  },
+  {
+    "sourceBugId": "403907",
+    "project": "Thunderbird",
+    "rawSeverity": "major",
+    "title": "[Thunderbird] Bug #403907: Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the sa",
+    "description": "Moving (+ delete/rename) a folder/subfolder (drag and drop) to an other location in the same account (even trash) take a lot of cpu and one to two minutes of processing",
+    "expectedSeverity": "High",
+    "id": 18
+  },
+  {
+    "sourceBugId": "452734",
+    "project": "Bugzilla",
+    "rawSeverity": "major",
+    "title": "[Bugzilla] Bug #452734: Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+    "description": "Since update to Bugzilla 3.2, keywords cannot be entered by just typing them in anymore",
+    "expectedSeverity": "High",
+    "id": 19
+  },
+  {
+    "sourceBugId": "225404",
+    "project": "Platform",
+    "rawSeverity": "major",
+    "title": "[Platform] Bug #225404: Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event ",
+    "description": "Clicking on areas to left or right of cell editors in tree does not raise a FocusIn event for tree on vista",
+    "expectedSeverity": "High",
+    "id": 20
+  },
+  {
+    "sourceBugId": "453801",
+    "project": "Core",
+    "rawSeverity": "major",
+    "title": "[Core] Bug #453801: Deferred (defer) external javascript fails to launch window.onload() if external CSS has b",
+    "description": "Deferred (defer) external javascript fails to launch window.onload() if external CSS has been loaded after the deferred script",
+    "expectedSeverity": "High",
+    "id": 21
+  },
+  {
+    "sourceBugId": "196328",
+    "project": "Platform",
+    "rawSeverity": "major",
+    "title": "[Platform] Bug #196328: Table viewer placed inside  a wizard does not expand vertically when size of the wizard ex",
+    "description": "Table viewer placed inside  a wizard does not expand vertically when size of the wizard expands",
+    "expectedSeverity": "High",
+    "id": 22
+  },
+  {
+    "sourceBugId": "430948",
+    "project": "Firefox",
+    "rawSeverity": "major",
+    "title": "[Firefox] Bug #430948: Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Boo",
+    "description": "Places:Drag & Drop a Favicon or a Link to Bookmarks Toolbar, Bookmarks Menu or Sidebar Bookmarks does not work.",
+    "expectedSeverity": "High",
+    "id": 23
+  },
+  {
+    "sourceBugId": "495558",
+    "project": "Core",
+    "rawSeverity": "major",
+    "title": "[Core] Bug #495558: Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+    "description": "Built firefox from hg on PPC linux to test ogg video: I hear no sound",
+    "expectedSeverity": "High",
+    "id": 24
+  },
+  {
+    "sourceBugId": "783525",
+    "project": "Core",
+    "rawSeverity": "normal",
+    "title": "[Core] Bug #783525: B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+    "description": "B2G RIL - Redefine the error report policy when handling SIM locks and PIN is wrong.",
+    "expectedSeverity": "Medium",
+    "id": 25
+  },
+  {
+    "sourceBugId": "580892",
+    "project": "Firefox",
+    "rawSeverity": "normal",
+    "title": "[Firefox] Bug #580892: Checking 'clear history when minefield closes' is not clearing cache on shutdown but on st",
+    "description": "Checking 'clear history when minefield closes' is not clearing cache on shutdown but on startup",
+    "expectedSeverity": "Medium",
+    "id": 26
+  },
+  {
+    "sourceBugId": "626741",
+    "project": "Core",
+    "rawSeverity": "normal",
+    "title": "[Core] Bug #626741: At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION",
+    "description": "At Mozilla Careers site with NoScript forcing HTTPS for www.mozilla.com: \"###!!! ASSERTION: attempt to modify an immutable nsStandardURL: 'Error', file nsStandardURL.cpp, line 1164\"",
+    "expectedSeverity": "Medium",
+    "id": 27
+  },
+  {
+    "sourceBugId": "365329",
+    "project": "Thunderbird",
+    "rawSeverity": "normal",
+    "title": "[Thunderbird] Bug #365329: string to date conversion returns wrong value for dates in february when run after 28th of",
+    "description": "string to date conversion returns wrong value for dates in february when run after 28th of each month",
+    "expectedSeverity": "Medium",
+    "id": 28
+  },
+  {
+    "sourceBugId": "376911",
+    "project": "Bugzilla",
+    "rawSeverity": "normal",
+    "title": "[Bugzilla] Bug #376911: Setting charset in http headers from Bugzilla::CGI object charset property doesn't work wi",
+    "description": "Setting charset in http headers from Bugzilla::CGI object charset property doesn't work with content-types others as text subtype",
+    "expectedSeverity": "Medium",
+    "id": 29
+  },
+  {
+    "sourceBugId": "198957",
+    "project": "Platform",
+    "rawSeverity": "normal",
+    "title": "[Platform] Bug #198957: Performance framework average and standard deviation computation is wrong when several com",
+    "description": "Performance framework average and standard deviation computation is wrong when several commits are done for a same scenario",
+    "expectedSeverity": "Medium",
+    "id": 30
+  },
+  {
+    "sourceBugId": "335496",
+    "project": "Platform",
+    "rawSeverity": "normal",
+    "title": "[Platform] Bug #335496: [Help] In Help View too much vertical white space between Scope and Alternate Search Expre",
+    "description": "[Help] In Help View too much vertical white space between Scope and Alternate Search Expression",
+    "expectedSeverity": "Medium",
+    "id": 31
+  },
+  {
+    "sourceBugId": "462441",
+    "project": "Core",
+    "rawSeverity": "normal",
+    "title": "[Core] Bug #462441: Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+    "description": "Site identity button looks weird in Firefox 3.1b1 on the Windows 7 PDC test build",
+    "expectedSeverity": "Medium",
+    "id": 32
+  },
+  {
+    "sourceBugId": "818436",
+    "project": "Firefox",
+    "rawSeverity": "normal",
+    "title": "[Firefox] Bug #818436: [toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+    "description": "[toolbox] We should not be able to dock a toolbox if the target is Remote or Win",
+    "expectedSeverity": "Medium",
+    "id": 33
+  },
+  {
+    "sourceBugId": "772679",
+    "project": "Core",
+    "rawSeverity": "normal",
+    "title": "[Core] Bug #772679: subpixel shifting causes visible shift of some lines on second scroll operation to hit bot",
+    "description": "subpixel shifting causes visible shift of some lines on second scroll operation to hit bottom of page",
+    "expectedSeverity": "Medium",
+    "id": 34
+  },
+  {
+    "sourceBugId": "621363",
+    "project": "Core",
+    "rawSeverity": "normal",
+    "title": "[Core] Bug #621363: SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+    "description": "SpecialPowers ipc setter code does not receive new value locally until next event loop run",
+    "expectedSeverity": "Medium",
+    "id": 35
+  },
+  {
+    "sourceBugId": "603919",
+    "project": "Core",
+    "rawSeverity": "normal",
+    "title": "[Core] Bug #603919: changed event should be changed even if we can't store the last used directory (for <input",
+    "description": "changed event should be changed even if we can't store the last used directory (for <input type='file'>)",
+    "expectedSeverity": "Medium",
+    "id": 36
+  },
+  {
+    "sourceBugId": "474157",
+    "project": "Core",
+    "rawSeverity": "minor",
+    "title": "[Core] Bug #474157: Not always checking for plugin exception set with NPN_SetException after invoking an NPCla",
+    "description": "Not always checking for plugin exception set with NPN_SetException after invoking an NPClass callback on an NPObject",
+    "expectedSeverity": "Low",
+    "id": 37
+  },
+  {
+    "sourceBugId": "599289",
+    "project": "Core",
+    "rawSeverity": "minor",
+    "title": "[Core] Bug #599289: default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+    "description": "default zh-TW and zh-HK fonts of several years ago should be replaced by the latest ones",
+    "expectedSeverity": "Low",
+    "id": 38
+  },
+  {
+    "sourceBugId": "523057",
+    "project": "Firefox",
+    "rawSeverity": "minor",
+    "title": "[Firefox] Bug #523057: dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in ",
+    "description": "dragging an HTML link from Thunderbird email to Firefox , Firefox displays web address in the URL bar twice",
+    "expectedSeverity": "Low",
+    "id": 39
+  },
+  {
+    "sourceBugId": "297387",
+    "project": "CDT",
+    "rawSeverity": "minor",
+    "title": "[CDT] Bug #297387: [DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC addre",
+    "description": "[DSF Disassembly] When location combo box has focus, 'Home' key shouldn't jump to PC address",
+    "expectedSeverity": "Low",
+    "id": 40
+  },
+  {
+    "sourceBugId": "203959",
+    "project": "CDT",
+    "rawSeverity": "trivial",
+    "title": "[CDT] Bug #203959: DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+    "description": "DVT33:TCT830: el - CDT - TOC navigation link differs from topic title of target page 5",
+    "expectedSeverity": "Low",
+    "id": 41
+  },
+  {
+    "sourceBugId": "437856",
+    "project": "Firefox",
+    "rawSeverity": "minor",
+    "title": "[Firefox] Bug #437856: Autocomplete only uses partial search string if 'tab' is pressed too quickly after enterin",
+    "description": "Autocomplete only uses partial search string if 'tab' is pressed too quickly after entering the search string.",
+    "expectedSeverity": "Low",
+    "id": 42
+  },
+  {
+    "sourceBugId": "255952",
+    "project": "CDT",
+    "rawSeverity": "minor",
+    "title": "[CDT] Bug #255952: \"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the names",
+    "description": "\"Add include\" adds \"using namespace\" also if \"Add include\" is called from within the namespace",
+    "expectedSeverity": "Low",
+    "id": 43
+  },
+  {
+    "sourceBugId": "625920",
+    "project": "Firefox",
+    "rawSeverity": "trivial",
+    "title": "[Firefox] Bug #625920: Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+    "description": "Panorama: display of the lower part of character like g, j or p (in the title tab) is cut",
+    "expectedSeverity": "Low",
+    "id": 44
+  },
+  {
+    "sourceBugId": "562452",
+    "project": "Firefox",
+    "rawSeverity": "trivial",
+    "title": "[Firefox] Bug #562452: Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+    "description": "Clicking the identity button when the location bar was focused shouldn't draw a focus ring",
+    "expectedSeverity": "Low",
+    "id": 45
+  },
+  {
+    "sourceBugId": "394085",
+    "project": "Firefox",
+    "rawSeverity": "trivial",
+    "title": "[Firefox] Bug #394085: The star button is touching the right border of the location bar drop down button",
+    "description": "The star button is touching the right border of the location bar drop down button",
+    "expectedSeverity": "Low",
+    "id": 46
+  },
+  {
+    "sourceBugId": "519676",
+    "project": "Bugzilla",
+    "rawSeverity": "minor",
+    "title": "[Bugzilla] Bug #519676: You cannot set parameters to empty values with an \"answers\" file when creating an installa",
+    "description": "You cannot set parameters to empty values with an \"answers\" file when creating an installation",
+    "expectedSeverity": "Low",
+    "id": 47
+  },
+  {
+    "sourceBugId": "297762",
+    "project": "Platform",
+    "rawSeverity": "minor",
+    "title": "[Platform] Bug #297762: [Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view ",
+    "description": "[Breakpoints] Breakpoint groups are not automatically expanded the first time the BP view is opened.",
+    "expectedSeverity": "Low",
+    "id": 48
+  }
+]

@@ -30,8 +30,19 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (allow example templates)
+.env
+.env.local
+.env.*.local
+.env.production
+!.env.example
+!.env.local.example
+
+# agent & ide artifacts
+AGENTS.md
+CLAUDE.md
+.agents/
+.gemini/
 
 # vercel
 .vercel

@@ -14,7 +14,7 @@ export async function GET(
     // 1. Fetch bug details with reporter and assigned developer
     const { data: bug, error: bugError } = await supabase
       .from('bug_reports')
-      .select('*, reporter:users!reporter_id(id, name, email), assignee:users!assigned_to(id, name, email)')
+      .select('*, reporter:users!reporter_id(id, name), assignee:users!assigned_to(id, name)')
       .eq('id', id)
       .single()
 
@@ -34,10 +34,10 @@ export async function GET(
       .select('similarity_score, confirmed, duplicate_of:bug_reports!duplicate_of_bug_id(id, title, status, ai_severity)')
       .eq('bug_id', id)
 
-    // 4. Fetch audit log
+    // 4. Fetch audit log (non-identifying action and timestamp only)
     const { data: auditLogs } = await supabase
       .from('audit_log')
-      .select('id, action, created_at, actor:users!actor(name, email, role)')
+      .select('id, action, created_at')
       .eq('bug_id', id)
       .order('created_at', { ascending: false })
 

@@ -34,6 +34,12 @@ export default function SignUpPage() {
 
       if (signUpErr) throw signUpErr
 
+      // Detect existing account (Supabase returns empty identities array when user already exists)
+      if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+        setError('An account with this email already exists. Please sign in instead.')
+        return
+      }
+
       // 2. Also ensure record exists in users table with role
       if (data.user) {
         await supabase.from('users').upsert({
@@ -70,7 +76,16 @@ export default function SignUpPage() {
         {error && (
           <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-600 text-sm flex items-start gap-2 border border-red-100">
             <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
-            <p>{error}</p>
+            <div className="flex-1">
+              <p>{error}</p>
+              {error.includes('already exists') && (
+                <p className="mt-1 text-xs">
+                  <Link href="/login" className="font-semibold text-indigo-700 underline hover:text-indigo-900">
+                    Sign in here &rarr;
+                  </Link>
+                </p>
+              )}
+            </div>
           </div>
         )}
 

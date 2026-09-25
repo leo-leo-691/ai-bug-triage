@@ -87,7 +87,7 @@ export async function POST(request: Request) {
         reporter_id: reporterId,
         status: 'new',
       })
-      .select('*, reporter:users!reporter_id(name, email)')
+      .select('*, reporter:users!reporter_id(name)')
       .single()
 
     if (bugError || !bug) {
@@ -124,7 +124,7 @@ export async function POST(request: Request) {
     // 6. Fetch refreshed bug row with updated triage data
     const { data: updatedBug } = await supabase
       .from('bug_reports')
-      .select('*, reporter:users!reporter_id(name, email)')
+      .select('*, reporter:users!reporter_id(name)')
       .eq('id', bug.id)
       .single()
 
@@ -150,7 +150,7 @@ export async function GET(request: Request) {
 
     let query = supabase
       .from('bug_reports')
-      .select('*, reporter:users!reporter_id(name, email)')
+      .select('*, reporter:users!reporter_id(name)')
       .order('created_at', { ascending: false })
 
     if (status && status !== 'all') {

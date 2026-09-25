@@ -27,11 +27,6 @@ interface AuditLogItem {
   id: string
   action: string
   created_at: string
-  actor?: {
-    name: string | null
-    email: string | null
-    role: string | null
-  } | null
 }
 
 interface BugDetail {
@@ -47,12 +42,10 @@ interface BugDetail {
   reporter?: {
     id: string
     name: string | null
-    email: string | null
   } | null
   assignee?: {
     id: string
     name: string | null
-    email: string | null
   } | null
 }
 
@@ -166,7 +159,7 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
             </div>
             <div className="flex items-center sm:justify-end gap-1.5">
               <User className="w-3.5 h-3.5" />
-              <span>{bug.reporter?.name || bug.reporter?.email || 'Anonymous reporter'}</span>
+              <span>{bug.reporter?.name || 'Anonymous reporter'}</span>
             </div>
           </div>
         </div>
@@ -271,7 +264,7 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
                 <div key={log.id} className="text-xs flex items-center justify-between p-2 rounded bg-slate-50 text-slate-600">
                   <span>{log.action}</span>
                   <span className="text-slate-400">
-                    {new Date(log.created_at).toLocaleString()} {log.actor ? `by ${log.actor.name || log.actor.email}` : ''}
+                    {new Date(log.created_at).toLocaleString()}
                   </span>
                 </div>
               ))}

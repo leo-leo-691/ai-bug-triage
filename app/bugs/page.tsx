@@ -14,7 +14,6 @@ interface BugItem {
   created_at: string
   reporter?: {
     name: string | null
-    email: string | null
   } | null
 }
 
@@ -196,7 +195,7 @@ export default function BugsListPage() {
                       {getSeverityBadge(bug.human_severity, bug.ai_severity)}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs text-slate-600">
-                      {bug.reporter?.name || bug.reporter?.email || 'Anonymous'}
+                      {bug.reporter?.name || 'Anonymous'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-xs text-slate-500">
                       {new Date(bug.created_at).toLocaleDateString(undefined, {

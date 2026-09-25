@@ -1,9 +1,53 @@
 import { NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
+
+async function verifyStaffSession() {
+  const authClient = await createServerSupabaseClient()
+  const {
+    data: { user },
+    error: authError,
+  } = await authClient.auth.getUser()
+
+  if (authError || !user) {
+    return {
+      authorized: false,
+      response: NextResponse.json(
+        { error: 'Unauthorized: Authentication required.' },
+        { status: 401 }
+      ),
+    }
+  }
+
+  const adminClient = createAdminClient()
+  const { data: profile } = await adminClient
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .maybeSingle()
+
+  const role = profile?.role
+  if (!role || !['admin', 'developer'].includes(role)) {
+    return {
+      authorized: false,
+      response: NextResponse.json(
+        { error: 'Forbidden: Admin or Developer role required.' },
+        { status: 403 }
+      ),
+    }
+  }
+
+  return { authorized: true, user, role, adminClient }
+}
 
 export async function GET() {
   try {
-    const supabase = createAdminClient()
+    const authCheck = await verifyStaffSession()
+    if (!authCheck.authorized || !authCheck.adminClient) {
+      return authCheck.response!
+    }
+
+    const supabase = authCheck.adminClient
 
     // 1. Fetch all bug reports with reporter and assignee
     const { data: bugs, error: bugsError } = await supabase
@@ -100,25 +144,20 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    const authCheck = await verifyStaffSession()
+    if (!authCheck.authorized || !authCheck.adminClient || !authCheck.user) {
+      return authCheck.response!
+    }
+
     const body = await request.json()
-    const { bug_id, action, payload, actor_email } = body
+    const { bug_id, action, payload } = body
 
     if (!bug_id || !action) {
       return NextResponse.json({ error: 'bug_id and action are required' }, { status: 400 })
     }
 
-    const supabase = createAdminClient()
-
-    // Find or identify actor
-    let actorId: string | null = null
-    if (actor_email) {
-      const { data: actor } = await supabase
-        .from('users')
-        .select('id')
-        .eq('email', actor_email)
-        .maybeSingle()
-      if (actor) actorId = actor.id
-    }
+    const supabase = authCheck.adminClient
+    const actorId = authCheck.user.id
 
     let auditDescription = ''
 
@@ -212,7 +251,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: `Unknown action: ${action}` }, { status: 400 })
     }
 
-    // Write to audit_log
+    // Write to audit_log with verified session user ID
     await supabase.from('audit_log').insert({
       bug_id,
       action: auditDescription,

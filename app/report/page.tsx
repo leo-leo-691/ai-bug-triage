@@ -63,16 +63,13 @@ export default function ReportBugPage() {
           <ArrowLeft className="w-4 h-4" />
           Back to Bug Queue
         </Link>
-        <span className="text-xs px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-          Phase 2: Core CRUD Mode
-        </span>
       </div>
 
       <div className="bg-white rounded-xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
         <div>
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Report a Bug</h1>
           <p className="text-sm text-slate-500 mt-1">
-            Provide details about the issue. In Phase 3, this report will automatically trigger AI classification and duplicate detection.
+            Provide details about the issue to help our team investigate and resolve it.
           </p>
         </div>
 

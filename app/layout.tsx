@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "BugTrack AI — Bug Reporting & Triage",
-  description: "AI-Assisted Software Bug Reporting and Triage System with pgvector duplicate detection",
+  description: "Report, track, and manage software bugs with intelligent triage and duplicate detection.",
 };
 
 export default function RootLayout({
@@ -36,7 +36,7 @@ export default function RootLayout({
         </main>
 
         <footer className="border-t border-slate-200 bg-white py-4 text-center text-xs text-slate-500">
-          AI-Assisted Software Bug Reporting and Triage System &bull; Supabase pgvector + Next.js + AI Orchestrator
+          &copy; 2026 BugTrack. All rights reserved.
         </footer>
       </body>
     </html>

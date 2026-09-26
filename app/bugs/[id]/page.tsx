@@ -13,13 +13,13 @@ interface TagItem {
 }
 
 interface DuplicateItem {
-  similarity_score: number
+  similarity_score?: number
   confirmed: boolean | null
   duplicate_of: {
     id: string
     title: string
     status: string
-    ai_severity: string | null
+    ai_severity?: string | null
   }
 }
 
@@ -143,7 +143,7 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
               {bug.ai_severity && !bug.human_severity && (
                 <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-purple-100 text-purple-800 border border-purple-200">
                   AI Severity: {bug.ai_severity}
-                  {bug.ai_confidence && ` (${Math.round(bug.ai_confidence * 100)}% conf)`}
+                  {bug.ai_confidence !== undefined && bug.ai_confidence !== null && ` (${Math.round(bug.ai_confidence * 100)}% conf)`}
                 </span>
               )}
             </div>
@@ -203,12 +203,12 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
           )}
         </div>
 
-        {/* Potential Duplicates (pgvector) */}
+        {/* Related Bug Reports */}
         {duplicates.length > 0 && (
           <div className="space-y-3 pt-2 border-t border-slate-100">
             <div className="flex items-center gap-2">
               <Copy className="w-4 h-4 text-purple-600" />
-              <h3 className="text-sm font-bold text-slate-900">Semantic Duplicates Detected by pgvector</h3>
+              <h3 className="text-sm font-bold text-slate-900">Related Bug Reports</h3>
             </div>
             <div className="space-y-2">
               {duplicates.map((dup, idx) => (
@@ -224,7 +224,10 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
                       {dup.duplicate_of.title}
                     </Link>
                     <div className="text-slate-500">
-                      Similarity Score: <span className="font-semibold text-purple-700">{(dup.similarity_score * 100).toFixed(1)}%</span> &bull; Status: {dup.duplicate_of.status}
+                      {dup.similarity_score !== undefined && (
+                        <><span className="font-semibold text-purple-700">{(dup.similarity_score * 100).toFixed(1)}%</span> &bull; </>
+                      )}
+                      Status: {dup.duplicate_of.status}
                     </div>
                   </div>
                   <div>
@@ -250,15 +253,13 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
           </div>
         )}
 
-        {/* Audit Log Timeline */}
-        <div className="space-y-3 pt-2 border-t border-slate-100">
-          <div className="flex items-center gap-2">
-            <History className="w-4 h-4 text-slate-400" />
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Audit History</h3>
-          </div>
-          {auditLogs.length === 0 ? (
-            <p className="text-xs text-slate-400 italic">No audit records found.</p>
-          ) : (
+        {/* Audit Log Timeline (Only visible if records exist) */}
+        {auditLogs.length > 0 && (
+          <div className="space-y-3 pt-2 border-t border-slate-100">
+            <div className="flex items-center gap-2">
+              <History className="w-4 h-4 text-slate-400" />
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Audit History</h3>
+            </div>
             <div className="space-y-2">
               {auditLogs.map((log) => (
                 <div key={log.id} className="text-xs flex items-center justify-between p-2 rounded bg-slate-50 text-slate-600">
@@ -269,8 +270,8 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
                 </div>
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   )

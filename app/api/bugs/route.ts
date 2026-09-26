@@ -150,7 +150,7 @@ export async function GET(request: Request) {
 
     let query = supabase
       .from('bug_reports')
-      .select('*, reporter:users!reporter_id(name)')
+      .select('id, title, description, status, ai_severity, human_severity, created_at, reporter:users!reporter_id(name)')
       .order('created_at', { ascending: false })
 
     if (status && status !== 'all') {

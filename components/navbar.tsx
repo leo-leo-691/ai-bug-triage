@@ -68,9 +68,6 @@ export default function Navbar() {
               BugTrack <span className="text-indigo-600">Triage</span>
             </span>
           </Link>
-          <span className="hidden sm:inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-slate-100 text-slate-600 border border-slate-200">
-            Academic Prototype
-          </span>
         </div>
 
         <nav className="flex items-center gap-1 sm:gap-2">

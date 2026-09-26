@@ -15,6 +15,8 @@ import {
   X,
   Sparkles,
   ExternalLink,
+  Search,
+  Filter,
 } from 'lucide-react'
 
 interface Developer {
@@ -72,6 +74,9 @@ export default function AdminTriagePage() {
   const [updatingId, setUpdatingId] = useState<string | null>(null)
   const [newTagInputs, setNewTagInputs] = useState<Record<string, string>>({})
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null)
+  
+  const [searchQuery, setSearchQuery] = useState('')
+  const [statusFilter, setStatusFilter] = useState('all')
 
   const loadData = async () => {
     try {
@@ -128,6 +133,14 @@ export default function AdminTriagePage() {
   const criticalCount = bugs.filter((b) => (b.human_severity || b.ai_severity) === 'Critical').length
   const pendingReviewCount = bugs.filter((b) => b.status === 'pending_review').length
   const duplicatesCount = bugs.filter((b) => b.duplicates && b.duplicates.length > 0).length
+
+  const filteredBugs = bugs.filter((bug) => {
+    const searchLower = searchQuery.toLowerCase()
+    const matchesSearch = bug.title.toLowerCase().includes(searchLower) || 
+                          bug.description.toLowerCase().includes(searchLower)
+    const matchesStatus = statusFilter === 'all' || bug.status === statusFilter
+    return matchesSearch && matchesStatus
+  })
 
   return (
     <div className="space-y-8">
@@ -187,19 +200,48 @@ export default function AdminTriagePage() {
         </div>
       )}
 
+      {/* Search and Filter Bar */}
+      <div className="flex flex-col sm:flex-row items-center gap-3 bg-white p-3 rounded-xl border border-slate-200 shadow-xs mt-2">
+        <div className="relative w-full sm:w-auto flex-1">
+          <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <input
+            type="text"
+            placeholder="Search bug title or description..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+          />
+        </div>
+        <div className="relative w-full sm:w-auto min-w-[160px]">
+          <Filter className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
+          >
+            <option value="all">All Statuses</option>
+            <option value="open">Open</option>
+            <option value="triaged">Triaged</option>
+            <option value="in_progress">In Progress</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+      </div>
+
       {/* Triage Table */}
       {loading && bugs.length === 0 ? (
         <div className="p-16 text-center text-slate-500 bg-white rounded-xl border border-slate-200">
           <RefreshCw className="w-6 h-6 animate-spin mx-auto text-indigo-600 mb-2" />
           <p className="text-sm">Loading triage queue...</p>
         </div>
-      ) : bugs.length === 0 ? (
+      ) : filteredBugs.length === 0 ? (
         <div className="p-12 text-center bg-white rounded-xl border border-slate-200 text-slate-500 text-sm">
-          No bugs in the queue.
+          No bugs found matching your search or filter.
         </div>
       ) : (
         <div className="space-y-4">
-          {bugs.map((bug) => {
+          {filteredBugs.map((bug) => {
             const currentSeverity = bug.human_severity || bug.ai_severity || 'Medium'
             const isHumanOverridden = Boolean(bug.human_severity)
 

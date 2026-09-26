@@ -176,7 +176,7 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
         {bug.steps_to_reproduce && (
           <div className="space-y-2">
             <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">Steps to Reproduce</h3>
-            <pre className="text-xs text-slate-700 bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto font-mono whitespace-pre-wrap">
+            <pre className="text-xs bg-slate-900 text-slate-100 p-4 rounded-lg overflow-x-auto font-mono whitespace-pre-wrap">
               {bug.steps_to_reproduce}
             </pre>
           </div>

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, use } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Clock, User, Tag, Copy, AlertTriangle, ShieldCheck, History, CheckCircle2, XCircle } from 'lucide-react'
+import { ArrowLeft, Clock, User, Tag, Copy, AlertTriangle, History, CheckCircle2, XCircle } from 'lucide-react'
 
 interface TagItem {
   source: 'ai' | 'human'

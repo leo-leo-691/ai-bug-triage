@@ -1,6 +1,6 @@
 import './_guard.mjs'
 import { createClient } from '@supabase/supabase-js'
-import { orchestrateBugTriage, generateEmbedding, validateBugInput } from '../lib/ai-orchestrator.js'
+import { orchestrateBugTriage, validateBugInput } from '../lib/ai-orchestrator.js'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY

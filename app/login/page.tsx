@@ -154,7 +154,7 @@ function LoginForm() {
         <form onSubmit={handleResetPassword} className="space-y-4">
           <div>
             <p className="text-xs text-slate-500 mb-3">
-              Enter your account email and we'll send you a link to reset your password.
+              Enter your account email and we&apos;ll send you a link to reset your password.
             </p>
             <label className="block text-xs font-semibold text-slate-700 uppercase mb-1">
               Account Email
@@ -194,7 +194,7 @@ function LoginForm() {
 
       <div className="pt-2 border-t border-slate-100 space-y-3">
         <div className="flex items-center justify-between text-xs text-slate-500">
-          <span>Don't have an account?</span>
+          <span>Don&apos;t have an account?</span>
           <Link href="/signup" className="text-indigo-600 font-semibold hover:underline">
             Create Account
           </Link>

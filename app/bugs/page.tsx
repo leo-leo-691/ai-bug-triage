@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Plus, Bug, Clock, AlertTriangle, CheckCircle, RefreshCw } from 'lucide-react'
+import { Plus, Bug, RefreshCw } from 'lucide-react'
 
 interface BugItem {
   id: string

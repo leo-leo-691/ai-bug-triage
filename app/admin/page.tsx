@@ -3,12 +3,8 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import {
-  ShieldAlert,
   CheckCircle2,
   XCircle,
-  AlertTriangle,
-  UserCheck,
-  Tag as TagIcon,
   RefreshCw,
   Copy,
   Plus,
@@ -472,7 +468,7 @@ export default function AdminTriagePage() {
                         >
                           <div>
                             <span className="font-medium text-slate-900">
-                              Matches: "{dup.duplicate_of?.title || dup.duplicate_of_bug_id}"
+                              Matches: &ldquo;{dup.duplicate_of?.title || dup.duplicate_of_bug_id}&rdquo;
                             </span>
                             <span className="text-purple-700 ml-2 font-bold">
                               ({(dup.similarity_score * 100).toFixed(1)}% match)

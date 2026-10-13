@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
-import { UserPlus, AlertCircle, CheckCircle2, Loader2, KeyRound, Eye, EyeOff } from 'lucide-react'
+import { UserPlus, AlertCircle, CheckCircle2, Loader2, Eye, EyeOff } from 'lucide-react'
 
 export default function SignUpPage() {
   const router = useRouter()
@@ -195,7 +195,7 @@ export default function SignUpPage() {
           <div className="space-y-4 mb-6 text-center">
             <div className="p-4 bg-blue-50 border border-blue-100 text-blue-800 rounded-lg text-sm mb-4">
               <p className="font-semibold text-base mb-2">Check your inbox!</p>
-              <p>We've sent a confirmation link to <strong>{email}</strong>.</p>
+              <p>We&apos;ve sent a confirmation link to <strong>{email}</strong>.</p>
               <p className="mt-2 text-blue-700">Please click the link in the email to activate your account. You can then close that window and sign in below.</p>
             </div>
             

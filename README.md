@@ -62,7 +62,7 @@ graph TD
    - `/report`: Interactive defect intake form with real-time validation and reproduction step guidelines.
    - `/bugs` & `/bugs/[id]`: Engineering dashboard displaying classified severity, suggested tags, duplicate clusters, and triage status.
    - `/admin`: Command dashboard for human triage engineers to review low-confidence tickets, confirm/reject duplicates, and override classifications.
-2. **Application & Security Layer (`middleware.ts`, `app/api/`)**:
+2. **Application & Security Layer (`proxy.ts`, `app/api/`)**:
    - Role-Based Access Control (RBAC) via Supabase SSR Authentication (`reporter`, `developer`, `admin`).
    - RESTful endpoints handling optimistic UI updates and atomic transaction coordination.
 3. **AI Orchestration Service (`lib/ai-orchestrator.ts`)**:

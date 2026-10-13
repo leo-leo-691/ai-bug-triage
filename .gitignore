@@ -50,3 +50,7 @@ CLAUDE.md
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# database backups (contain production data)
+backup-*.sql
+*.dump

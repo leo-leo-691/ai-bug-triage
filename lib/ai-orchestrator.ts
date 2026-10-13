@@ -1,3 +1,4 @@
+import 'server-only'
 import { createAdminClient } from '@/lib/supabase/admin'
 import OpenAI from 'openai'
 import { GoogleGenAI } from '@google/genai'

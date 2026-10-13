@@ -324,7 +324,7 @@ npm run test:db
 node --env-file=.env.local scripts/test-crud.mjs
 
 # Verify live AI Orchestrator with pgvector deduplication
-npx tsx --env-file=.env.local scripts/test-ai-orchestrator.mjs
+npx tsx --conditions=react-server --env-file=.env.local scripts/test-ai-orchestrator.mjs
 
 # Verify admin triage command & audit logging
 node --env-file=.env.local scripts/test-admin-triage.mjs

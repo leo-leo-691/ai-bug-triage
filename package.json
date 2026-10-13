@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test:db": "node --env-file=.env.local scripts/test-db-connection.mjs",
-    "eval": "npx tsx --env-file=.env.local scripts/run-evaluation.mjs",
-    "eval:external": "npx tsx --env-file=.env.local scripts/run-external-eval.mjs",
+    "eval": "npx tsx --conditions=react-server --env-file=.env.local scripts/run-evaluation.mjs",
+    "eval:external": "npx tsx --conditions=react-server --env-file=.env.local scripts/run-external-eval.mjs",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
@@ -22,6 +22,7 @@
     "openai": "^7.13.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
+    "server-only": "^0.0.1",
     "zod": "^4.6.7"
   },
   "devDependencies": {

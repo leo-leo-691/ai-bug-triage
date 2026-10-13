@@ -61,28 +61,43 @@ export default function BugDetailPage({ params }: { params: Promise<{ id: string
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    async function loadBug() {
+    let cancelled = false
+    let timer: ReturnType<typeof setTimeout> | undefined
+    let polls = 0
+
+    // AI triage runs in the background after submission; poll while the bug is still 'new'.
+    async function loadBug(initial: boolean) {
       try {
-        setLoading(true)
         const res = await fetch(`/api/bugs/${id}`)
         const data = await res.json()
 
         if (!res.ok) {
           throw new Error(data.error || 'Failed to load bug report')
         }
+        if (cancelled) return
 
         setBug(data.bug)
         setTags(data.tags || [])
         setDuplicates(data.duplicates || [])
         setAuditLogs(data.auditLogs || [])
+
+        if (data.bug?.status === 'new' && polls < 30) {
+          polls += 1
+          timer = setTimeout(() => loadBug(false), 3000)
+        }
       } catch (err: unknown) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch bug')
+        if (!cancelled && initial) setError(err instanceof Error ? err.message : 'Failed to fetch bug')
       } finally {
-        setLoading(false)
+        if (!cancelled && initial) setLoading(false)
       }
     }
 
-    loadBug()
+    loadBug(true)
+
+    return () => {
+      cancelled = true
+      if (timer) clearTimeout(timer)
+    }
   }, [id])
 
   if (loading) {

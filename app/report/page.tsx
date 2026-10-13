@@ -95,6 +95,8 @@ export default function ReportBugPage() {
               id="title"
               type="text"
               required
+              minLength={5}
+              maxLength={200}
               placeholder="e.g., App crashes on checkout when coupon code is empty"
               value={formData.title}
               onChange={(e) => setFormData({ ...formData, title: e.target.value })}
@@ -109,6 +111,8 @@ export default function ReportBugPage() {
             <textarea
               id="description"
               required
+              minLength={10}
+              maxLength={10000}
               rows={4}
               placeholder="Provide a clear description of what happened vs what was expected..."
               value={formData.description}
@@ -123,6 +127,7 @@ export default function ReportBugPage() {
             </label>
             <textarea
               id="steps"
+              maxLength={10000}
               rows={3}
               placeholder="1. Navigate to cart&#10;2. Leave promo field empty and click Apply&#10;3. Observe 500 server crash"
               value={formData.steps_to_reproduce}

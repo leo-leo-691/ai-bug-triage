@@ -1,6 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { createMockClient, hasOp, opArgs, type Resolver } from './helpers/supabase-mock'
 
+const afterCallbacks: Array<() => unknown> = []
+vi.mock('next/server', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('next/server')>()),
+  after: (cb: () => unknown) => {
+    afterCallbacks.push(cb)
+  },
+}))
+
 const getSession = vi.fn()
 const createAdminClient = vi.fn()
 const orchestrateBugTriage = vi.fn()
@@ -43,6 +51,7 @@ const postReq = (body: unknown) =>
 
 beforeEach(() => {
   vi.clearAllMocks()
+  afterCallbacks.length = 0
 })
 
 describe('GET /api/bugs', () => {
@@ -151,6 +160,52 @@ describe('POST /api/bugs', () => {
     // No users rows are created or looked up by email, and bugs are never inserted with the service role.
     expect(admin.calls.some((c) => c.table === 'users')).toBe(false)
     expect(admin.calls.some((c) => c.table === 'bug_reports' && hasOp(c, 'insert'))).toBe(false)
+
+    // Triage is deferred until after the response is sent.
+    expect(orchestrateBugTriage).not.toHaveBeenCalled()
+    expect(afterCallbacks).toHaveLength(1)
+    await afterCallbacks[0]()
+    expect(orchestrateBugTriage).toHaveBeenCalledWith(BUG_ID, expect.objectContaining({ title: valid.title }))
+
+    // Rate-limit row is keyed by user as well as IP.
+    const rl = admin.calls.find((c) => c.table === 'rate_limits' && hasOp(c, 'insert'))!
+    expect(opArgs(rl, 'insert')![0]).toEqual({ ip_address: '203.0.113.7', user_id: USER_ID })
+  })
+
+  it('marks the bug pending_triage if the background orchestrator throws', async () => {
+    sessionWith('reporter', () => ({ data: { id: BUG_ID } }))
+    const admin = adminMock(() => ({ count: 0 }))
+    orchestrateBugTriage.mockRejectedValue(new Error('boom'))
+    const res = await createBug(postReq(valid))
+    expect(res.status).toBe(201)
+    await afterCallbacks[0]()
+    const upd = admin.calls.find((c) => c.table === 'bug_reports' && hasOp(c, 'update'))!
+    expect(opArgs(upd, 'update')![0]).toEqual({ status: 'pending_triage' })
+  })
+
+  it('rejects over-long input with 400 before any AI or DB work', async () => {
+    sessionWith('reporter')
+    const admin = adminMock()
+    const res = await createBug(postReq({ ...valid, description: 'x'.repeat(10_001) }))
+    expect(res.status).toBe(400)
+    expect(admin.calls).toHaveLength(0)
+  })
+
+  it('returns 429 once the per-user limit is reached', async () => {
+    const session = sessionWith('reporter')
+    adminMock((table, ops) =>
+      table === 'rate_limits' && ops.some((o) => o.method === 'eq' && o.args[0] === 'user_id') ? { count: 5 } : { count: 0 }
+    )
+    const res = await createBug(postReq(valid))
+    expect(res.status).toBe(429)
+    expect(session.calls.some((c) => c.table === 'bug_reports')).toBe(false)
+  })
+
+  it('fails closed (503) if the rate-limit check errors', async () => {
+    sessionWith('reporter')
+    adminMock(() => ({ error: { message: 'db down' } }))
+    const res = await createBug(postReq(valid))
+    expect(res.status).toBe(503)
   })
 
   it('rejects non-string steps_to_reproduce with 400 before rate limiting', async () => {

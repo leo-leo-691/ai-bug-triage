@@ -1,3 +1,4 @@
+import './_guard.mjs'
 import { createClient } from '@supabase/supabase-js'
 import { orchestrateBugTriage, generateEmbedding, validateBugInput } from '../lib/ai-orchestrator.js'
 

@@ -1,3 +1,4 @@
+import './_guard.mjs'
 import fs from 'fs'
 import path from 'path'
 import { TEST_SET } from './run-evaluation.mjs'

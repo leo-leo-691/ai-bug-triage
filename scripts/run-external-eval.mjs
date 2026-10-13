@@ -1,3 +1,4 @@
+import './_guard.mjs'
 import { createClient } from '@supabase/supabase-js'
 import { orchestrateBugTriage } from '../lib/ai-orchestrator.ts'
 import fs from 'fs'

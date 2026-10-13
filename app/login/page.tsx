@@ -4,12 +4,14 @@ import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/client'
+import { safeRedirectPath } from '@/lib/safe-redirect'
 import { LogIn, AlertCircle, ShieldAlert, Sparkles, Loader2, Eye, EyeOff } from 'lucide-react'
 
 function LoginForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirect = searchParams.get('redirect') || '/admin'
+  // Only same-origin paths; blocks ?redirect=https://evil.example
+  const redirect = safeRedirectPath(searchParams.get('redirect'), '/bugs')
 
   const [mode, setMode] = useState<'signin' | 'forgot'>('signin')
   const [resetSent, setResetSent] = useState(false)
@@ -17,7 +19,7 @@ function LoginForm() {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(searchParams.get('error'))
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -53,7 +55,7 @@ function LoginForm() {
     try {
       const supabase = createClient()
       const { error: resetErr } = await supabase.auth.resetPasswordForEmail(email, {
-        redirectTo: typeof window !== 'undefined' ? `${window.location.origin}/update-password` : undefined,
+        redirectTo: `${window.location.origin}/auth/callback?next=/update-password`,
       })
 
       if (resetErr) {

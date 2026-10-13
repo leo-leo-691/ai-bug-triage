@@ -1,32 +1,29 @@
 import { NextResponse } from 'next/server'
-import { createServerClient } from '@supabase/ssr'
+import type { EmailOtpType } from '@supabase/supabase-js'
+import { createServerSupabaseClient } from '@/lib/supabase/server'
+import { safeRedirectPath } from '@/lib/safe-redirect'
 
+/**
+ * Landing route for Supabase email links (signup confirmation, password recovery).
+ * Supports the PKCE `code` flow and `token_hash` email templates, sets the session
+ * cookies, then redirects to a same-origin `next` path.
+ */
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
-  // if "next" is in param, use it as the redirect URL
-  const next = searchParams.get('next') ?? '/bugs'
+  const tokenHash = searchParams.get('token_hash')
+  const type = searchParams.get('type') as EmailOtpType | null
+  const next = safeRedirectPath(searchParams.get('next'), '/bugs')
+
+  const supabase = await createServerSupabaseClient()
 
   if (code) {
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      {
-        cookies: {
-          getAll() {
-            return []
-          },
-          setAll() {
-            // This is a Route Handler, so we don't set cookies here directly
-            // The Next.js client handles it via the hash or the middleware handles it
-          },
-        },
-      }
-    )
-    
-    // We actually need to use route handler cookie setting correctly
+    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    if (!error) return NextResponse.redirect(`${origin}${next}`)
+  } else if (tokenHash && type) {
+    const { error } = await supabase.auth.verifyOtp({ token_hash: tokenHash, type })
+    if (!error) return NextResponse.redirect(`${origin}${next}`)
   }
 
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/login?error=Invalid+recovery+link`)
+  return NextResponse.redirect(`${origin}/login?error=${encodeURIComponent('This link is invalid or has expired.')}`)
 }

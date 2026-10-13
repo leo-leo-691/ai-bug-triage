@@ -38,7 +38,7 @@ export default function UpdatePasswordPage() {
 
       setSuccess(true)
       setTimeout(() => {
-        router.push('/admin') // Redirect to admin or bugs after changing password
+        router.push('/bugs')
         router.refresh()
       }, 2000)
     } catch (err: unknown) {

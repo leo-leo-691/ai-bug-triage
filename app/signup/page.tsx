@@ -39,6 +39,7 @@ export default function SignUpPage() {
         password,
         options: {
           data: { name },
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=/bugs`,
         },
       })
 

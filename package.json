@@ -9,7 +9,9 @@
     "lint": "eslint",
     "test:db": "node --env-file=.env.local scripts/test-db-connection.mjs",
     "eval": "npx tsx --env-file=.env.local scripts/run-evaluation.mjs",
-    "eval:external": "npx tsx --env-file=.env.local scripts/run-external-eval.mjs"
+    "eval:external": "npx tsx --env-file=.env.local scripts/run-external-eval.mjs",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@google/genai": "^2.21.0",
@@ -23,12 +25,13 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^22.20.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "^16.4.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^5.0.4"
   }
 }

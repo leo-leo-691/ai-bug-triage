@@ -77,7 +77,7 @@ export async function GET(
       auditLogs,
     })
   } catch (err: unknown) {
-    console.error('API /api/bugs/[id] error:', err)
+    console.error('API /api/bugs/[id] error:', err instanceof Error ? err.message : err)
     return NextResponse.json({ error: 'Unable to complete the request. Please try again.' }, { status: 500 })
   }
 }

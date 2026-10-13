@@ -66,40 +66,72 @@ interface AdminBugItem {
   } | null
 }
 
+const PAGE_SIZE = 25
+
+interface TriageSummary {
+  total: number
+  critical: number
+  pendingReview: number
+  unreviewedDuplicates: number
+}
+
 export default function AdminTriagePage() {
   const [bugs, setBugs] = useState<AdminBugItem[]>([])
   const [developers, setDevelopers] = useState<Developer[]>([])
-  const [availableTags, setAvailableTags] = useState<{ id: string; name: string }[]>([])
   const [loading, setLoading] = useState(true)
   const [updatingId, setUpdatingId] = useState<string | null>(null)
   const [newTagInputs, setNewTagInputs] = useState<Record<string, string>>({})
   const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null)
-  
-  const [searchQuery, setSearchQuery] = useState('')
-  const [statusFilter, setStatusFilter] = useState('all')
 
-  const loadData = async () => {
-    try {
-      setLoading(true)
-      const res = await fetch('/api/admin/triage')
-      const data = await res.json()
-      if (res.ok) {
-        setBugs(data.bugs || [])
-        setDevelopers(data.developers || [])
-        setAvailableTags(data.availableTags || [])
-      }
-    } catch (err) {
-      console.error('Failed to load admin triage data', err)
-    } finally {
-      setLoading(false)
-    }
-  }
+  const [searchQuery, setSearchQuery] = useState('')
+  const [debouncedQuery, setDebouncedQuery] = useState('')
+  const [statusFilter, setStatusFilter] = useState('all')
+  const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(0)
+  const [summary, setSummary] = useState<TriageSummary>({ total: 0, critical: 0, pendingReview: 0, unreviewedDuplicates: 0 })
+  const [reloadKey, setReloadKey] = useState(0)
+
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
+
+  // Debounce search input before querying the server.
+  useEffect(() => {
+    const t = setTimeout(() => {
+      setDebouncedQuery(searchQuery.trim())
+      setPage(1)
+    }, 300)
+    return () => clearTimeout(t)
+  }, [searchQuery])
 
   useEffect(() => {
-    loadData()
-  }, [])
+    const controller = new AbortController()
+    const params = new URLSearchParams({ page: String(page), pageSize: String(PAGE_SIZE), status: statusFilter })
+    if (debouncedQuery) params.set('q', debouncedQuery)
 
-  const executeAction = async (bugId: string, action: string, payload: any) => {
+    fetch(`/api/admin/triage?${params}`, { signal: controller.signal })
+      .then(async (res) => {
+        const data = await res.json()
+        if (!res.ok) throw new Error(data.error || 'Failed to load triage queue')
+        setBugs(data.bugs || [])
+        setDevelopers(data.developers || [])
+        setTotal(data.total || 0)
+        if (data.summary) setSummary(data.summary)
+        setLoading(false)
+      })
+      .catch((err: unknown) => {
+        if (controller.signal.aborted) return
+        console.error('Failed to load admin triage data', err instanceof Error ? err.message : err)
+        setLoading(false)
+      })
+
+    return () => controller.abort()
+  }, [page, statusFilter, debouncedQuery, reloadKey])
+
+  const loadData = () => {
+    setLoading(true)
+    setReloadKey((k) => k + 1)
+  }
+
+  const executeAction = async (bugId: string, action: string, payload: Record<string, unknown>) => {
     try {
       setUpdatingId(bugId)
       setFeedbackMessage(null)
@@ -110,7 +142,6 @@ export default function AdminTriagePage() {
           bug_id: bugId,
           action,
           payload,
-          actor_email: 'admin@bugtrack.system',
         }),
       })
 
@@ -121,26 +152,13 @@ export default function AdminTriagePage() {
 
       setFeedbackMessage(data.auditDescription || 'Action saved to audit log.')
       // Refresh data
-      await loadData()
+      loadData()
     } catch (err: unknown) {
       alert(err instanceof Error ? err.message : 'Error updating triage record')
     } finally {
       setUpdatingId(null)
     }
   }
-
-  // Count summaries
-  const criticalCount = bugs.filter((b) => (b.human_severity || b.ai_severity) === 'Critical').length
-  const pendingReviewCount = bugs.filter((b) => b.status === 'pending_review').length
-  const duplicatesCount = bugs.filter((b) => b.duplicates && b.duplicates.length > 0).length
-
-  const filteredBugs = bugs.filter((bug) => {
-    const searchLower = searchQuery.toLowerCase()
-    const matchesSearch = bug.title.toLowerCase().includes(searchLower) || 
-                          bug.description.toLowerCase().includes(searchLower)
-    const matchesStatus = statusFilter === 'all' || bug.status === statusFilter
-    return matchesSearch && matchesStatus
-  })
 
   return (
     <div className="space-y-8">
@@ -171,19 +189,19 @@ export default function AdminTriagePage() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-xs">
           <p className="text-xs font-semibold text-slate-500 uppercase">Total Bugs</p>
-          <p className="text-2xl font-bold text-slate-900 mt-1">{bugs.length}</p>
+          <p className="text-2xl font-bold text-slate-900 mt-1">{summary.total}</p>
         </div>
         <div className="p-4 rounded-xl bg-white border border-rose-200 shadow-xs">
           <p className="text-xs font-semibold text-rose-600 uppercase">Critical Priority</p>
-          <p className="text-2xl font-bold text-rose-700 mt-1">{criticalCount}</p>
+          <p className="text-2xl font-bold text-rose-700 mt-1">{summary.critical}</p>
         </div>
         <div className="p-4 rounded-xl bg-white border border-purple-200 shadow-xs">
           <p className="text-xs font-semibold text-purple-600 uppercase">Needs Review (&lt;0.6 Conf)</p>
-          <p className="text-2xl font-bold text-purple-700 mt-1">{pendingReviewCount}</p>
+          <p className="text-2xl font-bold text-purple-700 mt-1">{summary.pendingReview}</p>
         </div>
         <div className="p-4 rounded-xl bg-white border border-amber-200 shadow-xs">
-          <p className="text-xs font-semibold text-amber-600 uppercase">Duplicate Links</p>
-          <p className="text-2xl font-bold text-amber-700 mt-1">{duplicatesCount}</p>
+          <p className="text-xs font-semibold text-amber-600 uppercase">Unreviewed Duplicates</p>
+          <p className="text-2xl font-bold text-amber-700 mt-1">{summary.unreviewedDuplicates}</p>
         </div>
       </div>
 
@@ -216,11 +234,17 @@ export default function AdminTriagePage() {
           <Filter className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
           <select
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={(e) => {
+              setLoading(true)
+              setStatusFilter(e.target.value)
+              setPage(1)
+            }}
             className="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition"
           >
             <option value="all">All Statuses</option>
-            <option value="open">Open</option>
+            <option value="new">New</option>
+            <option value="pending_triage">Pending Triage</option>
+            <option value="pending_review">Pending Review</option>
             <option value="triaged">Triaged</option>
             <option value="in_progress">In Progress</option>
             <option value="resolved">Resolved</option>
@@ -235,13 +259,13 @@ export default function AdminTriagePage() {
           <RefreshCw className="w-6 h-6 animate-spin mx-auto text-indigo-600 mb-2" />
           <p className="text-sm">Loading triage queue...</p>
         </div>
-      ) : filteredBugs.length === 0 ? (
+      ) : bugs.length === 0 ? (
         <div className="p-12 text-center bg-white rounded-xl border border-slate-200 text-slate-500 text-sm">
           No bugs found matching your search or filter.
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredBugs.map((bug) => {
+          {bugs.map((bug) => {
             const currentSeverity = bug.human_severity || bug.ai_severity || 'Medium'
             const isHumanOverridden = Boolean(bug.human_severity)
 
@@ -499,6 +523,37 @@ export default function AdminTriagePage() {
               </div>
             )
           })}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {total > PAGE_SIZE && (
+        <div className="flex items-center justify-between text-xs text-slate-600">
+          <span>
+            Page {page} of {totalPages} · {total} matching bugs
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => {
+                setLoading(true)
+                setPage((p) => Math.max(1, p - 1))
+              }}
+              disabled={page <= 1 || loading}
+              className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => {
+                setLoading(true)
+                setPage((p) => Math.min(totalPages, p + 1))
+              }}
+              disabled={page >= totalPages || loading}
+              className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
         </div>
       )}
     </div>

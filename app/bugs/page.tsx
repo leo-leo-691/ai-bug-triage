@@ -17,30 +17,45 @@ interface BugItem {
   } | null
 }
 
+const PAGE_SIZE = 25
+
 export default function BugsListPage() {
   const [bugs, setBugs] = useState<BugItem[]>([])
   const [loading, setLoading] = useState(true)
   const [statusFilter, setStatusFilter] = useState<string>('all')
 
-  const fetchBugs = async () => {
-    try {
-      setLoading(true)
-      const url = statusFilter === 'all' ? '/api/bugs' : `/api/bugs?status=${statusFilter}`
-      const res = await fetch(url)
-      const data = await res.json()
-      if (res.ok) {
-        setBugs(data.bugs || [])
-      }
-    } catch (err) {
-      console.error('Failed to fetch bugs', err)
-    } finally {
-      setLoading(false)
-    }
-  }
+  const [page, setPage] = useState(1)
+  const [total, setTotal] = useState(0)
+  const [reloadKey, setReloadKey] = useState(0)
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE))
 
   useEffect(() => {
-    fetchBugs()
-  }, [statusFilter])
+    const controller = new AbortController()
+    const params = new URLSearchParams({ page: String(page), pageSize: String(PAGE_SIZE) })
+    if (statusFilter !== 'all') params.set('status', statusFilter)
+
+    fetch(`/api/bugs?${params}`, { signal: controller.signal })
+      .then(async (res) => {
+        const data = await res.json()
+        if (res.ok) {
+          setBugs(data.bugs || [])
+          setTotal(data.total || 0)
+        }
+        setLoading(false)
+      })
+      .catch((err: unknown) => {
+        if (controller.signal.aborted) return
+        console.error('Failed to fetch bugs', err instanceof Error ? err.message : err)
+        setLoading(false)
+      })
+
+    return () => controller.abort()
+  }, [statusFilter, page, reloadKey])
+
+  const fetchBugs = () => {
+    setLoading(true)
+    setReloadKey((k) => k + 1)
+  }
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -126,7 +141,11 @@ export default function BugsListPage() {
         {['all', 'new', 'pending_triage', 'pending_review', 'triaged', 'in_progress', 'resolved'].map((filter) => (
           <button
             key={filter}
-            onClick={() => setStatusFilter(filter)}
+            onClick={() => {
+              setLoading(true)
+              setStatusFilter(filter)
+              setPage(1)
+            }}
             className={`px-3 py-1.5 rounded-md text-xs font-medium capitalize transition ${
               statusFilter === filter
                 ? 'bg-indigo-600 text-white shadow-xs'
@@ -216,6 +235,36 @@ export default function BugsListPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+        </div>
+      )}
+
+      {total > PAGE_SIZE && (
+        <div className="flex items-center justify-between text-xs text-slate-600">
+          <span>
+            Page {page} of {totalPages} · {total} bugs
+          </span>
+          <div className="flex gap-2">
+            <button
+              onClick={() => {
+                setLoading(true)
+                setPage((p) => Math.max(1, p - 1))
+              }}
+              disabled={page <= 1 || loading}
+              className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => {
+                setLoading(true)
+                setPage((p) => Math.min(totalPages, p + 1))
+              }}
+              disabled={page >= totalPages || loading}
+              className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 disabled:opacity-50"
+            >
+              Next
+            </button>
           </div>
         </div>
       )}

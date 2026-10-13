@@ -132,6 +132,8 @@ export async function GET(request: Request) {
 
     const { searchParams } = new URL(request.url)
     const status = searchParams.get('status')
+    const page = Math.max(1, Number.parseInt(searchParams.get('page') || '1', 10) || 1)
+    const pageSize = Math.min(100, Math.max(1, Number.parseInt(searchParams.get('pageSize') || '25', 10) || 25))
 
     if (status && status !== 'all' && !(BUG_STATUSES as readonly string[]).includes(status)) {
       return NextResponse.json({ error: 'Invalid status filter' }, { status: 400 })
@@ -140,23 +142,26 @@ export async function GET(request: Request) {
     // Session client: RLS returns only the reporter's own bugs; staff see all.
     let query = session.supabase
       .from('bug_reports')
-      .select('id, title, description, status, ai_severity, human_severity, created_at, reporter:users!reporter_id(name)')
+      .select('id, title, description, status, ai_severity, human_severity, created_at, reporter:users!reporter_id(name)', {
+        count: 'exact',
+      })
       .order('created_at', { ascending: false })
+      .range((page - 1) * pageSize, page * pageSize - 1)
 
     if (status && status !== 'all') {
       query = query.eq('status', status)
     }
 
-    const { data: bugs, error } = await query
+    const { data: bugs, error, count } = await query
 
     if (error) {
-      console.error('Error fetching bug reports:', error)
+      console.error('Error fetching bug reports:', error.message)
       return NextResponse.json({ error: 'Unable to complete the request. Please try again.' }, { status: 500 })
     }
 
-    return NextResponse.json({ bugs })
+    return NextResponse.json({ bugs, page, pageSize, total: count ?? 0 })
   } catch (err: unknown) {
-    console.error('API /api/bugs GET error:', err)
+    console.error('API /api/bugs GET error:', err instanceof Error ? err.message : err)
     return NextResponse.json({ error: 'Something went wrong processing your request. Please try again.' }, { status: 500 })
   }
 }

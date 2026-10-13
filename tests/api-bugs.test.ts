@@ -79,6 +79,15 @@ describe('GET /api/bugs', () => {
     const res = await listBugs(new Request('http://localhost/api/bugs?status=bogus'))
     expect(res.status).toBe(400)
   })
+
+  it('paginates with a capped page size', async () => {
+    const session = sessionWith('reporter', () => ({ data: [], count: 120 }))
+    const res = await listBugs(new Request('http://localhost/api/bugs?page=2&pageSize=1000'))
+    const body = await res.json()
+    expect(body).toMatchObject({ page: 2, pageSize: 100, total: 120 })
+    const list = session.calls.find((c) => c.table === 'bug_reports')!
+    expect(opArgs(list, 'range')).toEqual([100, 199])
+  })
 })
 
 describe('GET /api/bugs/[id]', () => {

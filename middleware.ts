@@ -45,14 +45,14 @@ export async function middleware(request: NextRequest) {
 
   // Staff-only routes
   if (user && (path === '/admin' || path.startsWith('/admin/'))) {
-
     const { data: profile } = await supabase
       .from('users')
       .select('role')
       .eq('id', user.id)
       .maybeSingle()
 
-    const role = profile?.role || user.user_metadata?.role
+    // Role comes only from public.users; auth user_metadata is user-editable.
+    const role = profile?.role
     if (!role || !['admin', 'developer'].includes(role)) {
       const url = request.nextUrl.clone()
       url.pathname = '/bugs'

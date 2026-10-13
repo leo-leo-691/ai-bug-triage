@@ -38,7 +38,7 @@ export default function SignUpPage() {
         email,
         password,
         options: {
-          data: { name, role: 'reporter' },
+          data: { name },
         },
       })
 
@@ -50,15 +50,7 @@ export default function SignUpPage() {
         return
       }
 
-      // 2. Also ensure record exists in users table with role
-      if (data.user) {
-        await supabase.from('users').upsert({
-          id: data.user.id,
-          name,
-          email,
-          role: 'reporter',
-        })
-      }
+      // The public.users profile (role 'reporter') is created by a database trigger.
 
       // Check if session was created immediately. If not, email confirmation is required.
       if (!data.session) {

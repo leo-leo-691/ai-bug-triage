@@ -4,42 +4,38 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
-import { User, LogOut, LogIn, Shield } from 'lucide-react'
+import type { User } from '@supabase/supabase-js'
+import { LogOut, LogIn } from 'lucide-react'
 
 export default function Navbar() {
   const router = useRouter()
   const pathname = usePathname()
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [userRole, setUserRole] = useState<string | null>(null)
 
   useEffect(() => {
     const supabase = createClient()
 
-    async function checkAuth() {
-      const { data: { user } } = await supabase.auth.getUser()
-      setUser(user)
-      if (user) {
-        // Query user role
-        const { data: profile } = await supabase
-          .from('users')
-          .select('role')
-          .eq('id', user.id)
-          .maybeSingle()
-        setUserRole(profile?.role || user.user_metadata?.role || 'reporter')
-      } else {
+    // Role comes only from public.users; auth user_metadata is user-editable.
+    async function loadRole(current: User | null) {
+      setUser(current)
+      if (!current) {
         setUserRole(null)
+        return
       }
+      const { data: profile } = await supabase
+        .from('users')
+        .select('role')
+        .eq('id', current.id)
+        .maybeSingle()
+      setUserRole(profile?.role ?? null)
     }
 
-    checkAuth()
+    supabase.auth.getUser().then(({ data: { user } }) => loadRole(user))
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null)
-      if (session?.user) {
-        setUserRole(session.user.user_metadata?.role || 'reporter')
-      } else {
-        setUserRole(null)
-      }
+      // Defer the query: supabase-js must not be awaited inside this callback.
+      setTimeout(() => loadRole(session?.user ?? null), 0)
     })
 
     return () => {

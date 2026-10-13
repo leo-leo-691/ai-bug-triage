@@ -1,32 +1,26 @@
 import { NextResponse } from 'next/server'
-import { createAdminClient } from '@/lib/supabase/admin'
+import { getSession } from '@/lib/auth'
 
-import { createServerSupabaseClient } from '@/lib/supabase/server'
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
 export async function GET(
   request: Request,
   props: { params: Promise<{ id: string }> }
 ) {
   try {
-    const params = await props.params
-    const id = params.id
+    const { id } = await props.params
 
-    const supabase = createAdminClient()
-    
-    // Determine user role
-    let isStaff = false
-    try {
-      const authClient = await createServerSupabaseClient()
-      const { data: { user } } = await authClient.auth.getUser()
-      if (user) {
-        const { data: profile } = await supabase.from('users').select('role').eq('id', user.id).single()
-        if (profile && ['admin', 'developer'].includes(profile.role)) {
-          isStaff = true
-        }
-      }
-    } catch (e) {
-      // Ignore auth errors for public routes
+    const session = await getSession()
+    if (!session) {
+      return NextResponse.json({ error: 'Authentication required.' }, { status: 401 })
     }
+
+    if (!UUID_RE.test(id)) {
+      return NextResponse.json({ error: 'Bug report not found' }, { status: 404 })
+    }
+
+    // Session client: RLS limits reporters to their own bugs, staff see all.
+    const { supabase, isStaff } = session
 
     // 1. Fetch bug details
     const selectQuery = isStaff
@@ -37,7 +31,7 @@ export async function GET(
       .from('bug_reports')
       .select(selectQuery)
       .eq('id', id)
-      .single()
+      .maybeSingle()
 
     if (bugError || !bug) {
       return NextResponse.json({ error: 'Bug report not found' }, { status: 404 })
@@ -54,14 +48,19 @@ export async function GET(
     const dupSelect = isStaff
       ? 'similarity_score, confirmed, duplicate_of:bug_reports!duplicate_of_bug_id(id, title, status, ai_severity)'
       : 'confirmed, duplicate_of:bug_reports!duplicate_of_bug_id(id, title, status)'
-      
+
     const { data: duplicates } = await supabase
       .from('duplicate_links')
       .select(dupSelect)
       .eq('bug_id', id)
 
-    // 4. Fetch audit log (only for staff)
-    let auditLogs: any[] = []
+    // RLS hides duplicate targets the caller may not read; drop those links.
+    const visibleDuplicates = ((duplicates || []) as unknown as Array<{ duplicate_of: unknown }>).filter(
+      (d) => d.duplicate_of != null
+    )
+
+    // 4. Fetch audit log (only for staff; RLS also enforces this)
+    let auditLogs: Array<{ id: string; action: string; created_at: string }> = []
     if (isStaff) {
       const { data } = await supabase
         .from('audit_log')
@@ -74,7 +73,7 @@ export async function GET(
     return NextResponse.json({
       bug,
       tags: tagLinks || [],
-      duplicates: duplicates || [],
+      duplicates: visibleDuplicates,
       auditLogs,
     })
   } catch (err: unknown) {

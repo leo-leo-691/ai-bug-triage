@@ -30,14 +30,21 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Protect /admin routes only
-  if (request.nextUrl.pathname.startsWith('/admin')) {
-    if (!user) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/login'
-      url.searchParams.set('redirect', request.nextUrl.pathname)
-      return NextResponse.redirect(url)
-    }
+  const path = request.nextUrl.pathname
+  const requiresLogin = ['/admin', '/bugs', '/report'].some(
+    (prefix) => path === prefix || path.startsWith(`${prefix}/`)
+  )
+
+  if (requiresLogin && !user) {
+    const url = request.nextUrl.clone()
+    url.pathname = '/login'
+    url.search = ''
+    url.searchParams.set('redirect', path)
+    return NextResponse.redirect(url)
+  }
+
+  // Staff-only routes
+  if (user && (path === '/admin' || path.startsWith('/admin/'))) {
 
     const { data: profile } = await supabase
       .from('users')

@@ -11,8 +11,6 @@ export default function ReportBugPage() {
     title: '',
     description: '',
     steps_to_reproduce: '',
-    reporter_name: '',
-    reporter_email: '',
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -39,6 +37,11 @@ export default function ReportBugPage() {
       })
 
       const data = await res.json()
+
+      if (res.status === 401) {
+        router.push('/login?redirect=/report')
+        return
+      }
 
       if (!res.ok) {
         throw new Error(data.error || 'Failed to submit bug report')
@@ -126,36 +129,6 @@ export default function ReportBugPage() {
               onChange={(e) => setFormData({ ...formData, steps_to_reproduce: e.target.value })}
               className="w-full px-3.5 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-white font-mono text-xs"
             />
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-slate-100">
-            <div>
-              <label htmlFor="reporter_name" className="block text-sm font-semibold text-slate-800 mb-1">
-                Your Name
-              </label>
-              <input
-                id="reporter_name"
-                type="text"
-                placeholder="Jane Doe"
-                value={formData.reporter_name}
-                onChange={(e) => setFormData({ ...formData, reporter_name: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="reporter_email" className="block text-sm font-semibold text-slate-800 mb-1">
-                Your Email
-              </label>
-              <input
-                id="reporter_email"
-                type="email"
-                placeholder="jane@example.com"
-                value={formData.reporter_email}
-                onChange={(e) => setFormData({ ...formData, reporter_email: e.target.value })}
-                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-white"
-              />
-            </div>
           </div>
 
           <div className="pt-3">

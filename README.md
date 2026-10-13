@@ -71,7 +71,7 @@ graph TD
    - **Semantic Deduplication**: Generates 1536-dimensional embeddings and executes vector similarity queries against existing defects using cosine distance ($1 - \text{cosine\_distance}$). Matches $\ge 0.85$ are flagged in `duplicate_links`.
    - **Ambiguity Guard**: Flags descriptions under 15 words or lacking symptom keywords (`crash`, `leak`, `segfault`, etc.) into `pending_review`.
    - **Fault-Tolerant Fallback**: Catches API timeouts, rate-limits, and quota exhaustion, falling back to deterministic keyword heuristics without blocking bug creation (ticket marked `pending_triage`).
-4. **Persistence & Vector Layer (`supabase/schema.sql`)**:
+4. **Persistence & Vector Layer (`supabase/migrations/`)**:
    - Native `pgvector` indexing with Cosine Distance RPC functions.
    - Row Level Security (RLS) enforcing multi-tenant isolation.
    - Immutable, append-only `audit_log` tracking every automated decision and human override.
@@ -279,8 +279,13 @@ OPENAI_API_KEY=your-openai-api-key
 ```
 
 ### 3. Database Initialization
-1. In your Supabase Dashboard, navigate to **SQL Editor**.
-2. Run the script provided in [`supabase/schema.sql`](supabase/schema.sql).
+Schema changes live in [`supabase/migrations/`](supabase/migrations/) and are applied with the Supabase CLI:
+```bash
+npx supabase link --project-ref <your-dev-project-ref>
+npx supabase db push
+```
+Use a separate **development** project for local work; production credentials belong only in Vercel.
+`supabase/manual/DESTRUCTIVE_local_reset.sql` drops all tables and is for throwaway local databases only.
 
 ### 4. Running the Web Application
 ```bash
@@ -293,6 +298,8 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ## 7. Running the Empirical Benchmark Suite
 
 You can execute and verify every stage of the empirical paper evaluation:
+
+> **Safety guard:** every script refuses to run unless `ALLOW_SCRIPT_WRITES=true` is set, and prints the Supabase project ref it will use. Several scripts insert rows, and `run-evaluation.mjs` **deletes all bug reports**. Only run them against a development project, e.g. `ALLOW_SCRIPT_WRITES=true node scripts/build-datasets.mjs`.
 
 ```bash
 # 1. Rebuild datasets from raw Bugzilla corpus (reproducible seed=42)
@@ -348,7 +355,8 @@ node --env-file=.env.local scripts/test-admin-triage.mjs
 │   ├── ensemble-config.json    # Frozen winning ensemble parameters
 │   └── final-eval-results.json # Full benchmark metrics & confusion matrices
 ├── supabase/
-│   └── schema.sql              # PostgreSQL DDL, RLS policies & pgvector RPC
+│   ├── migrations/             # Ordered PostgreSQL migrations (DDL, RLS, pgvector RPC)
+│   └── manual/                 # Read-only review queries and a destructive local reset
 ├── .env.local.example          # Environment variables template
 └── README.md                   # Comprehensive system documentation
 ```

@@ -1,13 +1,10 @@
+-- 0001_init: baseline matching the CURRENT live production schema.
+-- Generated from the original supabase/schema.sql minus its leading DROP TABLE block.
+-- The live database already contains everything below. DO NOT run this file there;
+-- mark it as applied with:  supabase migration repair --status applied 0001
+
 -- 1. Enable pgvector extension
 create extension if not exists vector;
-
--- 2. Drop existing tables if re-running migration
-drop table if exists audit_log cascade;
-drop table if exists duplicate_links cascade;
-drop table if exists bug_tags cascade;
-drop table if exists tags cascade;
-drop table if exists bug_reports cascade;
-drop table if exists users cascade;
 
 -- 3. Users table
 create table users (
